@@ -28,7 +28,7 @@ function LoginScreen(props) {
         </Button>
         <View style={styles.space} />
         <Button mode="contained" color="green" compact="true" >
-                <Text style={{ fontFamily: 'Montserrat', fontSize: 30 }}> אז הגיע הלילה של כוכב השביט הראשון</Text>
+                <Text style={{ fontFamily: 'Montserrat', fontSize: 30 }}> 123אז הגיע הלילה של כוכב השביט הראשון</Text>
         </Button>
         <View style={styles.space} />
         <Button mode="contained" color="purple" compact="true"  >
