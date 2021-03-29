@@ -2,7 +2,7 @@ import React from 'react';
 import { ImageBackground , StyleSheet ,Image , View , Text , Alert} from 'react-native';
 import { Button } from 'react-native-paper';
 import { useFonts } from 'expo-font';
-
+import {} from 'react-navigation'
 
 
 function LoginScreen(props) {
