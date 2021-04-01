@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font';
 
 
 
-function LoginScreen(props) {
+const LoginScreen = () => {
 
     const [loaded] = useFonts({
         Montserrat: require('../assets/fonts/500.ttf'),
