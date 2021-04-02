@@ -41,13 +41,13 @@ const LoginScreen = ({ navigation }) => {
             </View>
             <View style={styles.space} />
             <View>
-            <Button mode="contained" color="yellow" compact="true" onPress={() =>Alert.alert("מה שהוקלד:" , "name: " + nameText + " " + "email: " + emailText)} >
-                <Text style={{ fontFamily: 'Montserrat', fontSize:30 }}> בדיקה</Text>
-        </Button>
-        <View style={{height:10}} />
-        <Button mode="contained" color="yellow" compact="true" onPress= {() => navigation.navigate('ChooseHelp' , {userName: nameText , userEmail: emailText})} >
+
+            <View style={{height:10}} />
+            <View style={{justifyContent:'center' , alignItems:'center'}}>
+            <Button style={{width: '70%'}} mode="contained" color="yellow" compact="true" onPress= {() => navigation.navigate('ChooseHelp' , {userName: nameText , userEmail: emailText})} >
                 <Text style={{ fontFamily: 'Montserrat', fontSize:30 }}> כניסה</Text>
-        </Button>
+            </Button>
+            </View>
             </View>
        </SafeAreaView>
     );

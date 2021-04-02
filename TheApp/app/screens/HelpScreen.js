@@ -1,10 +1,11 @@
 import React from 'react';
 import {  View , Text } from 'react-native';
 
-const HelpScreen = ({ navigation }) => {
+const HelpScreen = ({route, navigation }) => {
+    const { help } = route.params;
     return (
-        <View style={{flex : 1 , justifyContent: 'center' , alignContent: 'center'}}>
-            <Text>help screen</Text>
+        <View style={{flex:1 , justifyContent:'center' , alignItems:'center'}}>
+            <Text>מה שנבחר זה {help}</Text>
         </View>
     );
 }
