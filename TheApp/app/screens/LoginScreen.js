@@ -1,11 +1,25 @@
 import React from 'react';
-import { ImageBackground , StyleSheet ,Image , View , Text , Alert} from 'react-native';
+import { ImageBackground , StyleSheet ,Image , View , Text , Alert, SafeAreaView} from 'react-native';
 import { Button } from 'react-native-paper';
 import { useFonts } from 'expo-font';
+import { TextInput } from 'react-native-paper';
 
 
 
-function LoginScreen(props) {
+/*           <TextInput
+            label="אימייל"
+            textAlign ='right'
+            right={true}
+            value={text}
+            onChangeText={text => setText(text)}
+        />*/
+
+
+const LoginScreen = ({ navigation }) => {
+
+    const [nameText, setNameText] = React.useState('');
+    const [emailText, setEmailText] = React.useState('');
+
 
     const [loaded] = useFonts({
         Montserrat: require('../assets/fonts/500.ttf'),
@@ -16,55 +30,47 @@ function LoginScreen(props) {
       }
 
     return (
-        <ImageBackground
-        style={styles.background} 
-        source={require('../assets/bg1.jpg')}>
-       <Image style={styles.logo} 
-       source={require('../assets/logo.jpg')}/>
-
-       
-          <Button mode="contained" color="yellow" compact="true" onPress={() =>Alert.alert("my title" , "my message" , [{text:"yes"},{text:"no"}])} >
-                <Text style={{ fontFamily: 'Montserrat', fontSize:30 }}> אז הגיע הלילה של כוכב השביט הראשון</Text>
+       <SafeAreaView style={styles.container}>
+            <View>
+            <Text style={{ fontFamily: 'Montserrat' , textAlign: 'right', writingDirection: 'rtl' , fontSize: 30}}>שם:</Text>
+            <TextInput
+            style={{textAlign: 'right', writingDirection: 'rtl' }}
+            mode='outlined'
+            value={nameText}
+            onChangeText={text => setNameText(text)}
+            selectionColor='#0000FF'
+            />
+            <Text style={{ fontFamily: 'Montserrat' , textAlign: 'right', writingDirection: 'rtl' , fontSize: 30}}>אימייל:</Text>
+            <TextInput
+            style={{textAlign: 'right', writingDirection: 'rtl' }}
+            mode='outlined'
+            value={emailText}
+            onChangeText={text => setEmailText(text)}
+            selectionColor='#0000FF'
+            />
+            </View>
+            <View style={styles.space} />
+            <View>
+            <Button mode="contained" color="yellow" compact="true" onPress={() =>Alert.alert("מה שהוקלד:" , "name: " + nameText + " " + "email: " + emailText)} >
+                <Text style={{ fontFamily: 'Montserrat', fontSize:30 }}> בדיקה</Text>
         </Button>
-        <View style={styles.space} />
-        <Button mode="contained" color="green" compact="true" >
-                <Text style={{ fontFamily: 'Montserrat', fontSize: 30 }}> 123אז הגיע הלילה של כוכב השביט הראשון</Text>
+        <View style={{height:10}} />
+        <Button mode="contained" color="yellow" compact="true" onPress= {() => navigation.navigate('ChooseHelp')} >
+                <Text style={{ fontFamily: 'Montserrat', fontSize:30 }}> כניסה</Text>
         </Button>
-        <View style={styles.space} />
-        <Button mode="contained" color="purple" compact="true"  >
-                <Text style={{ fontFamily: 'Montserrat', fontSize: 30 }}> אז הגיע הלילה של כוכב השביט הראשון</Text>
-        </Button>
-        <View style={styles.space} />
-        <Button mode="contained" color="orange" compact="true" >
-                <Text style={{ fontFamily: 'Montserrat', fontSize: 30 }}> אז הגיע הלילה של כוכב השביט הראשון</Text>
-        </Button>
-        </ImageBackground>
-        
+            </View>
+       </SafeAreaView>
     );
 }
-
 const styles = StyleSheet.create({
-    background: {
+    container: {
         flex: 1 ,  
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: 'column',
-
-    },
-    logo:{
-        width: 150,
-        height: 150,
-        borderRadius: 150 / 2,
-        overflow: "hidden",
-        borderWidth: 3,
-        borderColor: "black",
-        position: 'absolute',
-        top: 20
+        justifyContent:'center',
+        backgroundColor: "#FFEBCD",
     },
     space: {
         width: 20, // or whatever size you need
-        height: 20,
+        height: '15%',
       },
-
 })
 export default LoginScreen;
