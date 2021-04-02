@@ -1,11 +1,16 @@
 import React from 'react';
-import { ImageBackground , StyleSheet ,Image , View , Text , Alert} from 'react-native';
+import { ImageBackground , StyleSheet ,Image , View , Text , Alert, SafeAreaView} from 'react-native';
 import { Button } from 'react-native-paper';
 import { useFonts } from 'expo-font';
 
 
 
-const ChooseHelpScreen = ({ navigation }) => {
+
+const ChooseHelpScreen = ({route, navigation }) => {
+
+    const { userName, userEmail } = route.params;
+    let screenText=" שלום" + userName + " מה שלומך " ;
+    
 
     const [loaded] = useFonts({
         Montserrat: require('../assets/fonts/500.ttf'),
@@ -16,14 +21,12 @@ const ChooseHelpScreen = ({ navigation }) => {
       }
 
     return (
-        <ImageBackground
-        style={styles.background} 
-        source={require('../assets/bg1.jpg')}>
-       <Image style={styles.logo} 
-       source={require('../assets/logo.jpg')}/>
-
+        <SafeAreaView style={styles.container} >
        
-          <Button mode="contained" color="yellow" compact="true" onPress={() =>Alert.alert("my title" , "my message" , [{text:"yes"},{text:"no"}])} >
+        <Text style={{textAlign: 'right', writingDirection: 'rtl', fontFamily: 'Montserrat', fontSize:30, flexDirection: "row-reverse" ,marginLeft: '5%' }}>שלום {userName} {"\n"} תוכל לקבל פה עזרה במגוון נושאים :</Text>
+       
+       <View style={{flex:1 , justifyContent:'center' , alignItems:'center'}}>
+        <Button mode="contained" color="yellow" compact="true" onPress={() =>Alert.alert("my title" , "my message" , [{text:"yes"},{text:"no"}])} >
                 <Text style={{ fontFamily: 'Montserrat', fontSize:30 }}> אז הגיע הלילה של כוכב השביט הראשון</Text>
         </Button>
         <View style={styles.space} />
@@ -38,18 +41,31 @@ const ChooseHelpScreen = ({ navigation }) => {
         <Button mode="contained" color="orange" compact="true" >
                 <Text style={{ fontFamily: 'Montserrat', fontSize: 30 }}> אז הגיע הלילה של כוכב השביט הראשון</Text>
         </Button>
-        </ImageBackground>
+        </View>
+        </SafeAreaView>
         
     );
 }
 
 const styles = StyleSheet.create({
-    background: {
+    container: {
         flex: 1 ,  
-        alignItems: "center",
-        justifyContent: "center",
+
+        backgroundColor: "#FFEBCD"
     },
-    logo:{
+    space: {
+        width: 20, // or whatever size you need
+        height: 20,
+      },
+
+})
+export default ChooseHelpScreen;
+
+/*
+<Image style={styles.logo} 
+       source={require('../assets/logo.jpg')}/>
+
+           logo:{
         width: 150,
         height: 150,
         borderRadius: 150 / 2,
@@ -59,10 +75,4 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 20
     },
-    space: {
-        width: 20, // or whatever size you need
-        height: 20,
-      },
-
-})
-export default ChooseHelpScreen;
+    */

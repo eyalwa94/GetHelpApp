@@ -5,16 +5,6 @@ import { useFonts } from 'expo-font';
 import { TextInput } from 'react-native-paper';
 
 
-
-/*           <TextInput
-            label="אימייל"
-            textAlign ='right'
-            right={true}
-            value={text}
-            onChangeText={text => setText(text)}
-        />*/
-
-
 const LoginScreen = ({ navigation }) => {
 
     const [nameText, setNameText] = React.useState('');
@@ -55,7 +45,7 @@ const LoginScreen = ({ navigation }) => {
                 <Text style={{ fontFamily: 'Montserrat', fontSize:30 }}> בדיקה</Text>
         </Button>
         <View style={{height:10}} />
-        <Button mode="contained" color="yellow" compact="true" onPress= {() => navigation.navigate('ChooseHelp')} >
+        <Button mode="contained" color="yellow" compact="true" onPress= {() => navigation.navigate('ChooseHelp' , {userName: nameText , userEmail: emailText})} >
                 <Text style={{ fontFamily: 'Montserrat', fontSize:30 }}> כניסה</Text>
         </Button>
             </View>
