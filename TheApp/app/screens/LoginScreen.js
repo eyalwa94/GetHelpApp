@@ -7,6 +7,7 @@ import {
   Text,
   Alert,
   SafeAreaView,
+  Linking,
 } from "react-native";
 import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
@@ -38,7 +39,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <View style={{margin:10}}>
         <Text
           style={{
             fontFamily: "Montserrat",
@@ -90,6 +91,22 @@ const LoginScreen = ({ navigation }) => {
               כניסה
             </Text>
           </Button>
+            <Button
+              style={{ width: "50%", borderRadius: 70 }}
+              mode="contained"
+              color="red"
+              compact="true"
+              onPress={() => {
+                Linking.openURL(
+                  "https://chat.whatsapp.com/G2mKnKskYP556onqPdynTc"
+                );
+              }}
+            >
+              <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
+                {" "}
+                לעזרה דחופה
+              </Text>
+            </Button>
         </View>
       </View>
     </SafeAreaView>

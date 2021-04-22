@@ -16,7 +16,7 @@ const MyStack = () => {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
-          options={{ title: 'Login' }}
+          options={{ title: 'Login',headerStyle:{backgroundColor:"green"} }}
         />
         <Stack.Screen name="ChooseHelp" component={ChooseHelpScreen} />
         <Stack.Screen name="Help" component={HelpScreen} />
