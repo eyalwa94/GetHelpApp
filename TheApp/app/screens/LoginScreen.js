@@ -13,6 +13,7 @@ import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
 import { TextInput } from "react-native-paper";
 
+
 const LoginScreen = ({ navigation }) => {
   const [nameText, setNameText] = React.useState("");
   const [emailText, setEmailText] = React.useState("");
