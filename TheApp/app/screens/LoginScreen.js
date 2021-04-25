@@ -29,7 +29,7 @@ const LoginScreen = ({ navigation }) => {
 
   function handleClickEnter() {
     if (nameText == password) {
-      navigation.navigate("Admin");
+      navigation.navigate("AdminAuth");
     } else {
       navigation.navigate("ChooseHelp", {
         userName: nameText,
