@@ -12,6 +12,8 @@ import {
 import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
 import { TextInput } from "react-native-paper";
+import { useEffect } from "react/cjs/react.production.min";
+import {auth} from "../api/firebase"
 
 
 const LoginScreen = ({ navigation }) => {

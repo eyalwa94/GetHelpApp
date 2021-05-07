@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import {auth} from './app/api/firebase';
 
 import ChooseHelpScreen from './app/screens/ChooseHelpScreen';
 import HelpScreen from './app/screens/HelpScreen';
@@ -8,9 +9,22 @@ import LoginScreen from './app/screens/LoginScreen';
 import AdminScreen from './app/screens/AdminScreen';
 import AdminAuthentication from './app/screens/AdminAuthentication';
 
+
+
+
 const Stack = createStackNavigator();
 
 const MyStack = () => {
+  const[user,setUser]=React.useState(null);
+
+  React.useEffect(()=>{
+    auth().onAuthStateChanged((u) => {
+      if (u)
+        setUser(u);
+      else
+        setUser(null);
+    })
+  })
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -21,8 +35,7 @@ const MyStack = () => {
         />
         <Stack.Screen name="ChooseHelp" component={ChooseHelpScreen} />
         <Stack.Screen name="Help" component={HelpScreen} />
-        <Stack.Screen name="Admin" component={AdminScreen} />
-        <Stack.Screen name="AdminAuth" component={AdminAuthentication} />
+        <Stack.Screen name="AdminAuth" component={user ? AdminScreen : AdminAuthentication} />
       </Stack.Navigator>
     </NavigationContainer>
   );
