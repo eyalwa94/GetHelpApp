@@ -1,7 +1,8 @@
+
 import React from "react";
 import { View, Text } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-import { firestore } from "../api/firebase";
+import { firestore,auth } from "../api/firebase";
 
 const AdminScreen = ({ route, navigation }) => {
   const [firstName, setFirstName] = React.useState("");
@@ -109,6 +110,18 @@ const AdminScreen = ({ route, navigation }) => {
         onPress={handleClickSend}
       >
         <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}> הוספה</Text>
+      </Button>
+      <Button
+        style={{ width: "70%" }}
+        mode="contained"
+        color="yellow"
+        compact="true"
+        onPress={() => {
+          auth().signOut()
+          navigation.navigate("Login");
+        }}
+      >
+        <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}> יציאה</Text>
       </Button>
     </View>
   );

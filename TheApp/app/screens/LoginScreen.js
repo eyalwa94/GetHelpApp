@@ -12,6 +12,9 @@ import {
 import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
 import { TextInput } from "react-native-paper";
+import { useEffect } from "react/cjs/react.production.min";
+import {auth} from "../api/firebase"
+
 
 const LoginScreen = ({ navigation }) => {
   const [nameText, setNameText] = React.useState("");
@@ -28,7 +31,7 @@ const LoginScreen = ({ navigation }) => {
 
   function handleClickEnter() {
     if (nameText == password) {
-      navigation.navigate("Admin");
+      navigation.navigate("AdminAuth");
     } else {
       navigation.navigate("ChooseHelp", {
         userName: nameText,

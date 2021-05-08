@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator ,Linking } from "react-native";
 import { firestore } from "../api/firebase";
 
 
@@ -36,6 +36,11 @@ const HelpScreen = ({ route, navigation }) => {
   return (
     <View style={{ flex: 1, justifyContesnt: "center", alignItems: "center" }}>
       <Text>מה שנבחר זה {help}</Text>
+      <Text onPress={() => {
+            Linking.openURL(
+              "https://calendly.com/ziv-birer/rabbi"
+            );
+          }}>שיחה עם קבקי</Text>
       {Volunteers.map((item, key) => {
         return <Text key={key}>{item.firstName}</Text>;
       })}
