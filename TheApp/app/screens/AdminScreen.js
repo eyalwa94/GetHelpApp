@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,TouchableOpacity  } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 const AdminScreen = ({ route, navigation }) => {
   const [firstName, setFirstName] = React.useState("");
@@ -10,8 +11,37 @@ const AdminScreen = ({ route, navigation }) => {
   const [phone, setPhone] = React.useState("");
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
-
+  // const [sendValidation, setSendValidation] = React.useState(true);
+  // const [errorSend,setErrorSend] = React.useState("hello");
+  
   handleClickSend = () => {
+    let isValid = true;
+    let errorMessage = "השדות הבאים אינם תקינים : \n";
+    // if(firstName == null || lastName == null || city == null || phone == null || helpType == null || calendlyLink == null)
+    //   alert("אחד או יותר מהשדות");
+    
+   if (!/([א-ת]+)/.test(firstName))
+    {
+      isValid = false;
+      errorMessage = errorMessage + "שם לא תקין, הכנס שם בעברית";
+      //alert("שם לא תקין, אנא הכנס שם בעברית");
+      // setSendValidation(false);
+      // setErrorSend(errorSend + "שם לא תקין, אנא הכנס רק תווים בעברית");
+      // alert(errorSend);
+      // setErrorSend("");
+    }
+   if(!/([א-ת]+)/.test(lastName))
+    {
+      isValid = false;
+      errorMessage = errorMessage + "\n" + "שם משפחה לא תקין, הכנס שם בעברית";
+    }
+    if(isValid == false)
+    {
+      alert(errorMessage);
+      //errorMessage="";
+    }
+    else
+     {
     firestore()
       .collection("Volunteers")
       .add({
@@ -33,6 +63,8 @@ const AdminScreen = ({ route, navigation }) => {
       .catch((err) => {
         alert(err);
       });
+    }
+    
   };
 
   handleClickDelete = () => {
@@ -55,8 +87,13 @@ const AdminScreen = ({ route, navigation }) => {
       .where("lastName", "==", lastName);
       doc_to_update_query.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        doc.ref.update({phone:phone});
-        alert("Done");
+        if(phone.length != 10)
+        alert("מספר פלאפון לא תקין");
+        else
+          {
+            doc.ref.update({phone:phone});
+            alert("Done");
+          }
       });
     });
   };
