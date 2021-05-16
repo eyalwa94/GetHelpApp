@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
+import { firestore } from "../api/firebase";
 
 
 const ChooseHelpScreen = ({ route, navigation }) => {
@@ -17,9 +18,23 @@ const ChooseHelpScreen = ({ route, navigation }) => {
 
   const { userName, userEmail } = route.params;
   let screenText = " שלום" + userName + " מה שלומך ";
+  const all_volunteers=[];
+
 
   function handleClick(route) {
-    navigation.navigate("Help", { help: route });
+    //navigation.navigate("Help", { help: route });
+    firestore()
+    .collection("Volunteers")
+    .where("helpType", "==", route).get()
+    .then((snapshot) => {
+      snapshot.forEach((volunteer) => {
+        all_volunteers.push(volunteer.data());
+      })
+    })
+    .then(() => {
+      //console.log(all_volunteers[0]);
+      navigation.navigate("Help", {all_volunteers: all_volunteers }); //********************* */
+    })
   }
 
   const [loaded] = useFonts({
@@ -53,7 +68,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           mode="contained"
           color="yellow"
           compact="true"
-          onPress={() => handleClick("שיחה עם רב")}
+          onPress={() => handleClick("רב")}
         >
           <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
             {" "}

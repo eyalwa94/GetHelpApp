@@ -1,14 +1,15 @@
-
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-import { firestore,auth } from "../api/firebase";
+import { firestore, auth } from "../api/firebase";
 
 const AdminScreen = ({ route, navigation }) => {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [city, setCity] = React.useState("");
   const [phone, setPhone] = React.useState("");
+  const [helpType, setHelpType] = React.useState("");
+  const [calendlyLink, setCalendlyLink] = React.useState("");
 
   handleClickSend = () => {
     firestore()
@@ -18,12 +19,15 @@ const AdminScreen = ({ route, navigation }) => {
         lastName: lastName,
         city: city,
         phone: phone,
+        helpType: helpType,
       })
       .then(() => {
         setFirstName("");
         setLastName("");
         setCity("");
         setPhone("");
+        setHelpType("");
+        setCalendlyLink("");
         alert("done");
       })
       .catch((err) => {
@@ -31,18 +35,35 @@ const AdminScreen = ({ route, navigation }) => {
       });
   };
 
+  handleClickDelete = () => {
+    let doc_to_del_query = firestore()
+      .collection("Volunteers")
+      .where("firstName", "==", firstName)
+      .where("lastName", "==", lastName);
+      doc_to_del_query.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        doc.ref.delete();
+        alert("Done");
+      });
+    });
+  };
+
+  handleClickUpdate = () => {
+    let doc_to_update_query = firestore()
+      .collection("Volunteers")
+      .where("firstName", "==", firstName)
+      .where("lastName", "==", lastName);
+      doc_to_update_query.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        doc.ref.update({phone:phone});
+        alert("Done");
+      });
+    });
+  };
+
   return (
-    <View >
-      <Text
-        style={{
-          fontFamily: "Montserrat",
-          textAlign: "right",
-          writingDirection: "rtl",
-          fontSize: 30,
-        }}
-      >
-        שם:
-      </Text>
+    <View style={{ margin: 10 }}>
+      <Text style={styles.text}>שם:</Text>
       <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
         mode="outlined"
@@ -50,16 +71,7 @@ const AdminScreen = ({ route, navigation }) => {
         onChangeText={(text) => setFirstName(text)}
         selectionColor="#0000FF"
       />
-      <Text
-        style={{
-          fontFamily: "Montserrat",
-          textAlign: "right",
-          writingDirection: "rtl",
-          fontSize: 30,
-        }}
-      >
-        משפחה שם:
-      </Text>
+      <Text style={styles.text}>משפחה שם:</Text>
       <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
         mode="outlined"
@@ -67,16 +79,7 @@ const AdminScreen = ({ route, navigation }) => {
         onChangeText={(text) => setLastName(text)}
         selectionColor="#0000FF"
       />
-      <Text
-        style={{
-          fontFamily: "Montserrat",
-          textAlign: "right",
-          writingDirection: "rtl",
-          fontSize: 30,
-        }}
-      >
-        עיר:
-      </Text>
+      <Text style={styles.text}>עיר:</Text>
       <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
         mode="outlined"
@@ -84,16 +87,7 @@ const AdminScreen = ({ route, navigation }) => {
         onChangeText={(text) => setCity(text)}
         selectionColor="#0000FF"
       />
-      <Text
-        style={{
-          fontFamily: "Montserrat",
-          textAlign: "right",
-          writingDirection: "rtl",
-          fontSize: 30,
-        }}
-      >
-        טלפון:
-      </Text>
+      <Text style={styles.text}>טלפון:</Text>
       <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
         mode="outlined"
@@ -102,29 +96,95 @@ const AdminScreen = ({ route, navigation }) => {
         selectionColor="#0000FF"
         keyboardType="phone-pad"
       />
-      <Button
-        style={{ width: "70%" }}
-        mode="contained"
-        color="yellow"
-        compact="true"
-        onPress={handleClickSend}
-      >
-        <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}> הוספה</Text>
-      </Button>
-      <Button
-        style={{ width: "70%" }}
-        mode="contained"
-        color="yellow"
-        compact="true"
-        onPress={() => {
-          auth().signOut()
-          navigation.navigate("Login");
+      <Text style={styles.text}>סוג עזרה:</Text>
+      <TextInput
+        style={{ textAlign: "right", writingDirection: "rtl" }}
+        mode="outlined"
+        value={helpType}
+        onChangeText={(text) => setHelpType(text)}
+        selectionColor="#0000FF"
+      />
+      <Text style={styles.text}>קישור לקלנדלי:</Text>
+      <TextInput
+        style={{ textAlign: "right", writingDirection: "rtl" }}
+        mode="outlined"
+        value={calendlyLink}
+        onChangeText={(text) => setCalendlyLink(text)}
+        selectionColor="#0000FF"
+      />
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: 10,
         }}
       >
-        <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}> יציאה</Text>
-      </Button>
+        <Button
+          style={{ width: "50%", marginEnd: 5 }}
+          mode="contained"
+          color="green"
+          compact="true"
+          onPress={handleClickSend}
+        >
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הוספה</Text>
+        </Button>
+        <Button
+          style={{ width: "50%" }}
+          mode="contained"
+          color="red"
+          compact="true"
+          onPress={() => {
+            auth().signOut();
+            navigation.navigate("Login");
+          }}
+        >
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> יציאה</Text>
+        </Button>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: 10,
+          marginTop: 1,
+        }}
+      >
+        <Button
+          style={{ width: "50%" , marginEnd: 5 }}
+          mode="contained"
+          color="blue"
+          compact="true"
+          onPress={handleClickUpdate}
+        >
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> עדכון</Text>
+        </Button>
+        <Button
+          style={{ width: "50%" }}
+          mode="contained"
+          color="red"
+          compact="true"
+          onPress={handleClickDelete}
+        >
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> מחיקה</Text>
+        </Button>
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: "Montserrat",
+    textAlign: "right",
+    writingDirection: "rtl",
+    fontSize: 20,
+  },
+  space: {
+    width: 20, // or whatever size you need
+    height: "15%",
+  },
+});
 
 export default AdminScreen;
