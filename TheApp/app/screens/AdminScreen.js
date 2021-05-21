@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,ScrollView } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
 
@@ -62,7 +62,7 @@ const AdminScreen = ({ route, navigation }) => {
   };
 
   return (
-    <View style={{ margin: 10 }}>
+    <ScrollView style={{ margin: 10 }}>
       <Text style={styles.text}>שם:</Text>
       <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
@@ -170,7 +170,27 @@ const AdminScreen = ({ route, navigation }) => {
           <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> מחיקה</Text>
         </Button>
       </View>
-    </View>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: 10,
+          marginTop: 1,
+        }}
+      >
+         <Button
+          style={{ width: "50%" }}
+          mode="contained"
+          color="red"
+          compact="true"
+          onPress={handleClickDelete}
+        >
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הצגת כל המתנדבים</Text>
+        </Button>
+        </View>
+
+    </ScrollView>
   );
 };
 
