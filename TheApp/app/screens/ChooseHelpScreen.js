@@ -18,11 +18,11 @@ const ChooseHelpScreen = ({ route, navigation }) => {
 
   const { userName, userEmail } = route.params;
   let screenText = " שלום" + userName + " מה שלומך ";
-  const all_volunteers=[];
+  let all_volunteers=[];
 
 
   function handleClick(route) {
-    //navigation.navigate("Help", { help: route });
+    all_volunteers=[];
     firestore()
     .collection("Volunteers")
     .where("helpType", "==", route).get()
