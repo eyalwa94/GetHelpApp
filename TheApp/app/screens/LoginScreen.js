@@ -42,6 +42,24 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={{flex:0.3 , alignItems:"center" , alignContent:"center"}}>
+             <Button
+              style={{ width: "50%", borderRadius: 70 }}
+              mode="contained"
+              color="red"
+              compact="true"
+              onPress={() => {
+                Linking.openURL(
+                  "https://chat.whatsapp.com/G2mKnKskYP556onqPdynTc"
+                );
+              }}
+            >
+              <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
+                {" "}
+                לעזרה דחופה
+              </Text>
+            </Button>
+            </View>
       <View style={{margin:10}}>
         <Text
           style={{
@@ -94,22 +112,7 @@ const LoginScreen = ({ navigation }) => {
               כניסה
             </Text>
           </Button>
-            <Button
-              style={{ width: "50%", borderRadius: 70 }}
-              mode="contained"
-              color="red"
-              compact="true"
-              onPress={() => {
-                Linking.openURL(
-                  "https://chat.whatsapp.com/G2mKnKskYP556onqPdynTc"
-                );
-              }}
-            >
-              <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
-                {" "}
-                לעזרה דחופה
-              </Text>
-            </Button>
+           
         </View>
       </View>
     </SafeAreaView>
