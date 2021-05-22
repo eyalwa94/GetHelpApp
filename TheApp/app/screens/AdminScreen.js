@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet,ScrollView } from "react-native";
+import { View, Text, StyleSheet,ScrollView, Alert ,Modal } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
 
@@ -11,6 +11,10 @@ const AdminScreen = ({ route, navigation }) => {
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
 
+  //const[allVolunteers,setAllVolunteers]=React.useState([]);
+  const [modalVisible, setModalVisible] = React.useState(false);
+  let all_volunteers=[];
+
   handleClickSend = () => {
     firestore()
       .collection("Volunteers")
@@ -20,6 +24,7 @@ const AdminScreen = ({ route, navigation }) => {
         city: city,
         phone: phone,
         helpType: helpType,
+        calendlyLink:calendlyLink,
       })
       .then(() => {
         setFirstName("");
@@ -60,6 +65,22 @@ const AdminScreen = ({ route, navigation }) => {
       });
     });
   };
+
+  handleClickShowAll= () => {
+    all_volunteers=[];
+    firestore()
+    .collection("Volunteers")
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((volunteer) => {
+        all_volunteers.push(volunteer.data());
+      })
+    })
+    .then(() => {
+      navigation.navigate("AllVol", {all_volunteers: all_volunteers });
+    })
+  };
+
 
   return (
     <ScrollView style={{ margin: 10 }}>
@@ -184,12 +205,11 @@ const AdminScreen = ({ route, navigation }) => {
           mode="contained"
           color="red"
           compact="true"
-          onPress={handleClickDelete}
+          onPress={handleClickShowAll}
         >
           <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הצגת כל המתנדבים</Text>
         </Button>
         </View>
-
     </ScrollView>
   );
 };

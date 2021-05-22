@@ -8,6 +8,8 @@ import HelpScreen from './app/screens/HelpScreen';
 import LoginScreen from './app/screens/LoginScreen';
 import AdminScreen from './app/screens/AdminScreen';
 import AdminAuthentication from './app/screens/AdminAuthentication';
+import AllVolunteers from './app/screens/AllVolunteers';
+
 
 
 
@@ -36,6 +38,7 @@ const MyStack = () => {
         <Stack.Screen name="ChooseHelp" component={ChooseHelpScreen} />
         <Stack.Screen name="Help" component={HelpScreen} />
         <Stack.Screen name="AdminAuth" component={user ? AdminScreen : AdminAuthentication} />
+        <Stack.Screen name="AllVol" component={AllVolunteers} />
       </Stack.Navigator>
     </NavigationContainer>
   );
