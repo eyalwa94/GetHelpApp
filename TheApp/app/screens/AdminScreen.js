@@ -12,9 +12,8 @@ const AdminScreen = ({ route, navigation }) => {
   const [calendlyLink, setCalendlyLink] = React.useState("");
 
 
-  const[errorName,setErrorName]=React.useState("");
+
   //const[allVolunteers,setAllVolunteers]=React.useState([]);
-  const [modalVisible, setModalVisible] = React.useState(false);
   let all_volunteers=[];
 
   handleClickSend = () => {
@@ -93,9 +92,7 @@ const AdminScreen = ({ route, navigation }) => {
         value={firstName}
         onChangeText={(text) => setFirstName(text)}
         selectionColor="#0000FF"
-        onEndEditing={()=>{firstName.length<5 ? setErrorName("שם לא תקין"): ""}}
       />
-      <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorName}</Text>
       <Text style={styles.text}>משפחה שם:</Text>
       <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
