@@ -6,7 +6,7 @@ import { firestore } from "../api/firebase";
 
 const HelpScreen = ({ route, navigation }) => {
   const  {all_volunteers}  = route.params;
-  const bg_colors=["red","green","blue","yellow","white","purple"];
+  const bg_colors=["red","green","yellow","white","purple"];
 
   if(all_volunteers.length!=0)
   {
@@ -22,7 +22,7 @@ const HelpScreen = ({ route, navigation }) => {
           <Text style={styles.text} >שם משפחה: {item.lastName}</Text>
           <Text style={styles.text}>עיר: {item.city}</Text>
           <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
-          <Button onPress={() => Linking.openURL(item.calendlyLink)}>link for calendly</Button>
+          <Button onPress={() => Linking.openURL(item.calendlyLink)}>לקביעת פגישה דרך הקאלנדרי</Button>
           </View>);
       })}  
     </View>
@@ -41,7 +41,7 @@ const HelpScreen = ({ route, navigation }) => {
               <Text style={styles.text} >שם משפחה: {item.lastName}</Text>
               <Text style={styles.text}>עיר: {item.city}</Text>
               <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
-              <Button onPress={() => Linking.openURL(whatsapp_link)}>whatsapp link</Button>
+              <Button onPress={() => Linking.openURL(whatsapp_link)}>לפנייה דרך הווצאפ</Button>
               </View>);
           })}  
         </View>
@@ -50,7 +50,10 @@ const HelpScreen = ({ route, navigation }) => {
   }
   else
   {
-    return (<View><Text>אין כרגע מתנדבים</Text></View>)
+    return (<View style={{flex: 1,
+      justifyContent: "center",
+      alignItems:"center",
+      backgroundColor: "#FFEBCD"}}><Text style={{fontSize:20}}>אין כרגע מתנדבים</Text></View>)
   }
 };
 //https://calendly.com/ziv-birer/rabbi
@@ -66,6 +69,7 @@ const styles = StyleSheet.create({
   text:{
     textAlign: "right",
     writingDirection: "rtl",
+    fontSize:20
   }
 });
 

@@ -205,7 +205,7 @@ const AdminScreen = ({ route, navigation }) => {
         }}
       >
          <Button
-          style={{ width: "50%" }}
+          style={{ width: "50%" , marginEnd: 5 }}
           mode="contained"
           color="red"
           compact="true"
