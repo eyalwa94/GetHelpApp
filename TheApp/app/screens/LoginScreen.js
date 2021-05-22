@@ -21,6 +21,12 @@ const LoginScreen = ({ navigation }) => {
   const [emailText, setEmailText] = React.useState("");
   const [password, setPassword] = React.useState("1234");
 
+  const[errorEmail,setErrorEmail]=React.useState("");
+  const[errorName,setErrorName]=React.useState("");
+  const[validEmail,setValidEmail]=React.useState(false);
+  const[validName,setValidName]=React.useState(false);
+
+
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/500.ttf"),
   });
@@ -30,18 +36,76 @@ const LoginScreen = ({ navigation }) => {
   }
 
   function handleClickEnter() {
-    if (nameText == password) {
-      navigation.navigate("AdminAuth");
-    } else {
+     
+      if(validEmail==true && validName==true)
+      {
       navigation.navigate("ChooseHelp", {
         userName: nameText,
         userEmail: emailText,
       });
+      }
+      else{
+        alert("אנא הזן אימייל ושם")
+      }
+    
+  }
+
+  function emailValidation()
+  {
+    let re = /\S+@\S+\.\S+/;
+    if (re.test(emailText)==false)
+    {
+      setErrorEmail("אנא הזן אימייל תקין");
+      setValidEmail(false);
     }
+    else
+    {
+      setErrorEmail("");
+      setValidEmail(true);
+    }  
+  }
+
+  function nameValidation()
+  {
+    if (nameText == password) 
+    {
+      navigation.navigate("AdminAuth");
+    }
+    else{
+    let re = /^[\u0590-\u05FF]*$/;
+    if(re.test(nameText)==false)
+    {
+      setErrorName("שם לא תקין (אנא הזן שם בעברית)");
+      setValidName(false);
+    }
+    else
+    {
+      setErrorName("");
+      setValidName(true);
+    }  
+  }
   }
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={{flex:0.3 , alignItems:"center" , alignContent:"center"}}>
+             <Button
+              style={{ width: "50%", borderRadius: 70 }}
+              mode="contained"
+              color="red"
+              compact="true"
+              onPress={() => {
+                Linking.openURL(
+                  "https://chat.whatsapp.com/G2mKnKskYP556onqPdynTc"
+                );
+              }}
+            >
+              <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
+                {" "}
+                לעזרה דחופה
+              </Text>
+            </Button>
+            </View>
       <View style={{margin:10}}>
         <Text
           style={{
@@ -59,7 +123,9 @@ const LoginScreen = ({ navigation }) => {
           value={nameText}
           onChangeText={(text) => setNameText(text)}
           selectionColor="#0000FF"
+          onEndEditing={nameValidation}
         />
+        <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorName}</Text>
         <Text
           style={{
             fontFamily: "Montserrat",
@@ -76,7 +142,9 @@ const LoginScreen = ({ navigation }) => {
           value={emailText}
           onChangeText={(text) => setEmailText(text)}
           selectionColor="#0000FF"
+          onEndEditing={emailValidation}
         />
+        <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorEmail}</Text>
       </View>
       <View style={styles.space} />
       <View>
@@ -94,22 +162,7 @@ const LoginScreen = ({ navigation }) => {
               כניסה
             </Text>
           </Button>
-            <Button
-              style={{ width: "50%", borderRadius: 70 }}
-              mode="contained"
-              color="red"
-              compact="true"
-              onPress={() => {
-                Linking.openURL(
-                  "https://chat.whatsapp.com/G2mKnKskYP556onqPdynTc"
-                );
-              }}
-            >
-              <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
-                {" "}
-                לעזרה דחופה
-              </Text>
-            </Button>
+           
         </View>
       </View>
     </SafeAreaView>

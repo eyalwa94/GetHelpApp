@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,ScrollView, Alert ,Modal } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
 
@@ -11,6 +11,11 @@ const AdminScreen = ({ route, navigation }) => {
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
 
+
+
+  //const[allVolunteers,setAllVolunteers]=React.useState([]);
+  let all_volunteers=[];
+
   handleClickSend = () => {
     firestore()
       .collection("Volunteers")
@@ -20,6 +25,7 @@ const AdminScreen = ({ route, navigation }) => {
         city: city,
         phone: phone,
         helpType: helpType,
+        calendlyLink:calendlyLink,
       })
       .then(() => {
         setFirstName("");
@@ -61,8 +67,27 @@ const AdminScreen = ({ route, navigation }) => {
     });
   };
 
+  handleClickShowAll= () => {
+    all_volunteers=[];
+    firestore()
+    .collection("Volunteers")
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((volunteer) => {
+        all_volunteers.push(volunteer.data());
+      })
+    })
+    .then(() => {
+      navigation.navigate("AllVol", {all_volunteers: all_volunteers });
+    })
+  };
+
+  handleClickAddUser= () => {
+    navigation.navigate("AddVol");
+  };
+
   return (
-    <View style={{ margin: 10 }}>
+    <ScrollView style={{ margin: 10 }}>
       <Text style={styles.text}>שם:</Text>
       <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
@@ -170,7 +195,35 @@ const AdminScreen = ({ route, navigation }) => {
           <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> מחיקה</Text>
         </Button>
       </View>
-    </View>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: 10,
+          marginTop: 1,
+        }}
+      >
+         <Button
+          style={{ width: "50%" }}
+          mode="contained"
+          color="red"
+          compact="true"
+          onPress={handleClickShowAll}
+        >
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הצגת כל המתנדבים</Text>
+        </Button>
+        <Button
+          style={{ width: "50%" }}
+          mode="contained"
+          color="red"
+          compact="true"
+          onPress={handleClickAddUser}
+        >
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הוספת מתנדב</Text>
+        </Button>
+        </View>
+    </ScrollView>
   );
 };
 
