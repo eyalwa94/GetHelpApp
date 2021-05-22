@@ -82,6 +82,9 @@ const AdminScreen = ({ route, navigation }) => {
     })
   };
 
+  handleClickAddUser= () => {
+    navigation.navigate("AddVol");
+  };
 
   return (
     <ScrollView style={{ margin: 10 }}>
@@ -209,6 +212,15 @@ const AdminScreen = ({ route, navigation }) => {
           onPress={handleClickShowAll}
         >
           <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הצגת כל המתנדבים</Text>
+        </Button>
+        <Button
+          style={{ width: "50%" }}
+          mode="contained"
+          color="red"
+          compact="true"
+          onPress={handleClickAddUser}
+        >
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הוספת מתנדב</Text>
         </Button>
         </View>
     </ScrollView>
