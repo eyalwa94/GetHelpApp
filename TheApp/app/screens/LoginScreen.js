@@ -21,6 +21,12 @@ const LoginScreen = ({ navigation }) => {
   const [emailText, setEmailText] = React.useState("");
   const [password, setPassword] = React.useState("1234");
 
+  const[errorEmail,setErrorEmail]=React.useState("");
+  const[errorName,setErrorName]=React.useState("");
+  const[validEmail,setValidEmail]=React.useState(false);
+  const[validName,setValidName]=React.useState(false);
+
+
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/500.ttf"),
   });
@@ -30,14 +36,54 @@ const LoginScreen = ({ navigation }) => {
   }
 
   function handleClickEnter() {
-    if (nameText == password) {
-      navigation.navigate("AdminAuth");
-    } else {
+     
+      if(validEmail==true && validName==true)
+      {
       navigation.navigate("ChooseHelp", {
         userName: nameText,
         userEmail: emailText,
       });
+      }
+      else{
+        alert("אנא הזן אימייל ושם")
+      }
+    
+  }
+
+  function emailValidation()
+  {
+    let re = /\S+@\S+\.\S+/;
+    if (re.test(emailText)==false)
+    {
+      setErrorEmail("אנא הזן אימייל תקין");
+      setValidEmail(false);
     }
+    else
+    {
+      setErrorEmail("");
+      setValidEmail(true);
+    }  
+  }
+
+  function nameValidation()
+  {
+    if (nameText == password) 
+    {
+      navigation.navigate("AdminAuth");
+    }
+    else{
+    let re = /^[\u0590-\u05FF]*$/;
+    if(re.test(nameText)==false)
+    {
+      setErrorName("שם לא תקין (אנא הזן שם בעברית)");
+      setValidName(false);
+    }
+    else
+    {
+      setErrorName("");
+      setValidName(true);
+    }  
+  }
   }
 
   return (
@@ -77,7 +123,9 @@ const LoginScreen = ({ navigation }) => {
           value={nameText}
           onChangeText={(text) => setNameText(text)}
           selectionColor="#0000FF"
+          onEndEditing={nameValidation}
         />
+        <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorName}</Text>
         <Text
           style={{
             fontFamily: "Montserrat",
@@ -94,7 +142,9 @@ const LoginScreen = ({ navigation }) => {
           value={emailText}
           onChangeText={(text) => setEmailText(text)}
           selectionColor="#0000FF"
+          onEndEditing={emailValidation}
         />
+        <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorEmail}</Text>
       </View>
       <View style={styles.space} />
       <View>

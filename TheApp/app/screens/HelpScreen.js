@@ -10,8 +10,10 @@ const HelpScreen = ({ route, navigation }) => {
 
   if(all_volunteers.length!=0)
   {
-  return (
-
+    if(all_volunteers[0].helpType=='רב')
+    { 
+      return (
+    
     <View style={{ flex: 1, justifyContesnt: "center", alignItems: "center" }}>
       <Text style={{ fontWeight: 'bold' , fontSize:30 }}>{all_volunteers[0].helpType}</Text>
       {all_volunteers.map((item, key) => {
@@ -24,12 +26,32 @@ const HelpScreen = ({ route, navigation }) => {
           </View>);
       })}  
     </View>
-  );
+      );
     }
-    else
+    else  
     {
-      return (<View><Text>אין כרגע מתנדבים</Text></View>)
+      return (
+    
+        <View style={{ flex: 1, justifyContesnt: "center", alignItems: "center" }}>
+          <Text style={{ fontWeight: 'bold' , fontSize:30 }}>{all_volunteers[0].helpType}</Text>
+          {all_volunteers.map((item, key) => {
+            let whatsapp_link="https://wa.me/972"+item.phone.slice(1);
+            return (<View key={key} style={{flex: 1 , backgroundColor: bg_colors[Math.floor(Math.random()*bg_colors.length)] , width: "100%" ,  }}>
+              <Text style={styles.text}>שם: {item.firstName}</Text>
+              <Text style={styles.text} >שם משפחה: {item.lastName}</Text>
+              <Text style={styles.text}>עיר: {item.city}</Text>
+              <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
+              <Button onPress={() => Linking.openURL(whatsapp_link)}>whatsapp link</Button>
+              </View>);
+          })}  
+        </View>
+          );
     }
+  }
+  else
+  {
+    return (<View><Text>אין כרגע מתנדבים</Text></View>)
+  }
 };
 //https://calendly.com/ziv-birer/rabbi
 const styles = StyleSheet.create({
