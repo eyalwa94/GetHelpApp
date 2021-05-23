@@ -63,6 +63,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
                       .then(() => {
                         navigation.navigate("AllVol", {
                           all_volunteers: all_volunteers,
+                          wanted_sort:false
                         });
                       });
                   },

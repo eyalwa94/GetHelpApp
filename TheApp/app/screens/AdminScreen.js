@@ -78,7 +78,7 @@ const AdminScreen = ({ route, navigation }) => {
       })
     })
     .then(() => {
-      navigation.navigate("AllVol", {all_volunteers: all_volunteers });
+      navigation.navigate("AllVol", {all_volunteers: all_volunteers , wanted_sort:false });
     })
   };
 
