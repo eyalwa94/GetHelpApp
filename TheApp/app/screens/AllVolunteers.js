@@ -14,7 +14,7 @@ import { Button ,TextInput } from "react-native-paper";
 import { firestore } from "../api/firebase";
 
 const AllVolunteers = ({ route, navigation }) => {
-  const { all_volunteers } = route.params;
+  let { all_volunteers } = route.params;
   const { sorted_vol } = route.params;
   const { wanted_sort } = route.params;
 
@@ -55,7 +55,8 @@ const AllVolunteers = ({ route, navigation }) => {
             doc_to_del_query.get().then(function (querySnapshot) {
               querySnapshot.forEach(function (doc) {
                 doc.ref.delete();
-                all_volunteers.splice(key, 1);
+                //all_volunteers.splice(key, 1);
+                all_volunteers = all_volunteers.filter(vol => vol.firstName!=firstName && vol.lastName!=lastName);
                 navigation.navigate("AllVol", {
                   all_volunteers: all_volunteers,
                   wanted_sort:false
@@ -133,6 +134,12 @@ const AllVolunteers = ({ route, navigation }) => {
   }
   }
 
+  handleClickGoBack = () => {
+    navigation.navigate("AllVol", {
+      all_volunteers: all_volunteers,
+      wanted_sort:false
+    });
+  }
 
   if(wanted_sort==false)
   {
@@ -237,13 +244,18 @@ const AllVolunteers = ({ route, navigation }) => {
   }
   }
   else{
-    console.log("after send sorted" + sorted_vol);
-    console.log("after send " + all_volunteers);
     return( 
       <ScrollView
       style={{ flex: 1 }}
       contentContainerStyle={{ backgroundColor: "#F8F8FF" }}
     >
+                    <Button
+                color="red"
+                compact="true"
+                onPress={handleClickGoBack}
+              >
+                <Text style={{ fontSize: 20 }}> חזרה לרשימה המלאה</Text>
+              </Button>
       {sorted_vol.map((item, key) => {
       return (
         <View
