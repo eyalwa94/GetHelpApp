@@ -55,8 +55,10 @@ const AllVolunteers = ({ route, navigation }) => {
             doc_to_del_query.get().then(function (querySnapshot) {
               querySnapshot.forEach(function (doc) {
                 doc.ref.delete();
-                //all_volunteers.splice(key, 1);
-                all_volunteers = all_volunteers.filter(vol => vol.firstName!=firstName && vol.lastName!=lastName);
+                if(wanted_sort==false)
+                  all_volunteers.splice(key, 1);
+                else  
+                  all_volunteers = all_volunteers.filter(vol => vol.firstName!=firstName && vol.lastName!=lastName);
                 navigation.navigate("AllVol", {
                   all_volunteers: all_volunteers,
                   wanted_sort:false
@@ -113,9 +115,7 @@ const AllVolunteers = ({ route, navigation }) => {
       sorted_volunteers = sorted_volunteers.filter(vol => vol.city==citySort);
     }
 
-    
-    //console.log("before send sorted" + sorted_volunteers);
-    //console.log("before send " + all_volunteers);
+  
     if(sorted_volunteers.length!=0 && sort_was_made)
     {
       setNameSort("");
