@@ -45,7 +45,7 @@ const LoginScreen = ({ navigation }) => {
       });
       }
       else{
-        alert("אנא הזן אימייל ושם")
+        Alert.alert("שגיאה","אנא הזן שם ואימייל תקניים",[{text:"אישור"}])
       }
     
   }
