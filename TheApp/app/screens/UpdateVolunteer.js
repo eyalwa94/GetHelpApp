@@ -1,8 +1,13 @@
+//Update Volunteer
+//Part of the admin page
+
+//import
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Alert, Modal } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
 
+//Update page and functions
 const UpdateVolunteer = ({ route, navigation }) => {
   const { chosen_volunteer } = route.params;
 
@@ -16,7 +21,8 @@ const UpdateVolunteer = ({ route, navigation }) => {
   const [calendlyLink, setCalendlyLink] = React.useState(
     chosen_volunteer[0].calendlyLink
   );
-
+  
+  //Update the volunteer
   handleClickUpdate1 = () => {
     let doc_to_update_query = firestore()
       .collection("Volunteers")
@@ -147,7 +153,8 @@ const UpdateVolunteer = ({ route, navigation }) => {
     </ScrollView>
   );
 };
-//https://calendly.com/ziv-birer/rabbi
+
+//styling the page
 const styles = StyleSheet.create({
   container: {
     flex: 1,

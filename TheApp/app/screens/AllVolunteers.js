@@ -1,3 +1,7 @@
+//Admin pannel page that show all the volunteers
+//it include the functions of Update and Delete
+
+//import
 import React from "react";
 import {
   View,
@@ -13,18 +17,18 @@ import {
 import { Button ,TextInput } from "react-native-paper";
 import { firestore } from "../api/firebase";
 
+//All volunteers page and his functions
 const AllVolunteers = ({ route, navigation }) => {
   let { all_volunteers } = route.params;
   const { sorted_vol } = route.params;
   const { wanted_sort } = route.params;
-
   const[nameSort,setNameSort]=React.useState("");
   const[lastNameSort,setLastNameSort]=React.useState("");
   const[helpTypeSort,setHelpTypeSort]=React.useState("");
   const[citySort,setCitySort]=React.useState("");
+  let chosen_volunteer = [];
 
-
-
+//Styling
   const bg_colors = [
     "#F0F8FF",
     "#FAEBD7",
@@ -33,9 +37,10 @@ const AllVolunteers = ({ route, navigation }) => {
     "#F0E68C",
     "#FFB6C1",
   ];
-  let chosen_volunteer = [];
-
+  
+//Delete function of volunteer
   handleClickDelete = (firstName, lastName, key) => {
+    //Pop up alert because this action delete information from the firebase
     Alert.alert(
       "אזהרה",
       "מחיקת משתמש זוהי פעולה שאיננה ניתנת לביטול הם תרצי למחוק את" +
@@ -48,6 +53,7 @@ const AllVolunteers = ({ route, navigation }) => {
         {
           text: "אישור",
           onPress: () => {
+            //Delete the user by First name and last name from the firebase database
             let doc_to_del_query = firestore()
               .collection("Volunteers")
               .where("firstName", "==", firstName)
@@ -72,7 +78,9 @@ const AllVolunteers = ({ route, navigation }) => {
     );
   };
 
+  //Update function of volunteer
   handleClickUpdate = (firstName, lastName, key) => {
+    //get the volunteer that need to be updated from the firebase
     chosen_volunteer = [];
     firestore()
       .collection("Volunteers")
@@ -85,38 +93,40 @@ const AllVolunteers = ({ route, navigation }) => {
         });
       })
       .then(() => {
+        //Navigates to the UpdateVol page and send there the volunteer that need to be updated
         navigation.navigate("UpdateVol", {
           chosen_volunteer: chosen_volunteer,
-        }); //********************* */
+        }); 
       });
   };
 
+  //Sort function of whole volunteers
   handleClickSort = () => {
     let sorted_volunteers = all_volunteers.slice();
     let sort_was_made=false;
-    if(nameSort!="")
+    if(nameSort!="") // sort by name
     {
       sort_was_made=true;
       sorted_volunteers = sorted_volunteers.filter(vol => vol.firstName==nameSort);
     }
-    if(lastNameSort!="")
+    if(lastNameSort!="") // sort by last name
     {
       sort_was_made=true;
       sorted_volunteers = sorted_volunteers.filter(vol => vol.lastName==lastNameSort);
     }
-    if(helpTypeSort!="")
+    if(helpTypeSort!="") // sort by help type
     {
       sort_was_made=true;
       sorted_volunteers = sorted_volunteers.filter(vol => vol.helpType==helpTypeSort);
     }
-    if(citySort!="")
+    if(citySort!="") // sort by city
     {
       sort_was_made=true;
       sorted_volunteers = sorted_volunteers.filter(vol => vol.city==citySort);
     }
 
   
-    if(sorted_volunteers.length!=0 && sort_was_made)
+    if(sorted_volunteers.length!=0 && sort_was_made) // validation for sorting type
     {
       setNameSort("");
       setLastNameSort("");
@@ -134,6 +144,7 @@ const AllVolunteers = ({ route, navigation }) => {
   }
   }
 
+  //Go back navigation
   handleClickGoBack = () => {
     navigation.navigate("AllVol", {
       all_volunteers: all_volunteers,
@@ -141,9 +152,10 @@ const AllVolunteers = ({ route, navigation }) => {
     });
   }
 
-  if(wanted_sort==false)
+  if(wanted_sort==false) // represent the regular page without sorting 
   {
-  if (all_volunteers.length != 0) {
+  if (all_volunteers.length != 0) //if there are any volunteers in the firebase
+  {
     return (
       <ScrollView
         style={{ flex: 1 }}
@@ -235,7 +247,9 @@ const AllVolunteers = ({ route, navigation }) => {
         })}
       </ScrollView>
     );
-  } else {
+  } 
+  else // in case there are no volunteers
+  {
     return (
       <View>
         <Text>אין כרגע מתנדבים</Text>
@@ -243,7 +257,8 @@ const AllVolunteers = ({ route, navigation }) => {
     );
   }
   }
-  else{
+  else // Show the sported page
+  {
     return( 
       <ScrollView
       style={{ flex: 1 }}
@@ -298,14 +313,15 @@ const AllVolunteers = ({ route, navigation }) => {
   }
 
 };
-//https://calendly.com/ziv-birer/rabbi
+
+//styling page
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFEBCD",
   },
   space: {
-    width: 20, // or whatever size you need
+    width: 20, 
     height: 20,
   },
   text: {
