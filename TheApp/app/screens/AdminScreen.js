@@ -1,22 +1,23 @@
+//Representing the Admin screen
+//Include all the functions that admin can do
+
+//Import
 import React from "react";
 import { View, Text, StyleSheet,ScrollView, Alert ,Modal } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
 
+//Admin page and his functions
 const AdminScreen = ({ route, navigation }) => {
-  const [firstName, setFirstName] = React.useState("");
+  const [firstName, setFirstName] = React.useState(""); 
   const [lastName, setLastName] = React.useState("");
   const [city, setCity] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
-
-
-
-  //const[allVolunteers,setAllVolunteers]=React.useState([]);
   let all_volunteers=[];
   
-
+//Show all volunteers function
   handleClickShowAll= () => {
     all_volunteers=[];
     firestore()
@@ -28,14 +29,15 @@ const AdminScreen = ({ route, navigation }) => {
       })
     })
     .then(() => {
-      navigation.navigate("AllVol", {all_volunteers: all_volunteers , wanted_sort:false });
+      navigation.navigate("AllVol", {all_volunteers: all_volunteers , wanted_sort:false }); // navigate to the AllVolunteers page, and send all_volunteers array
     })
   };
 
-  handleClickAddUser= () => {
+//Add new volunteer function
+  handleClickAddUser= () => { 
     navigation.navigate("AddVol");
   };
-  
+  //navigation buttons
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                <Button
@@ -77,6 +79,7 @@ const AdminScreen = ({ route, navigation }) => {
   );
 };
 
+//Styling the page
 const styles = StyleSheet.create({
   text: {
     fontFamily: "Montserrat",
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   space: {
-    width: 10, // or whatever size you need
+    width: 10, 
     height: "10%",
   },
 });

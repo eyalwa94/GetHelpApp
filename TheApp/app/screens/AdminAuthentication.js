@@ -1,3 +1,7 @@
+//Authentication the admin user to the application
+// Working with Firebase Authentication tools.
+
+//imports
 import React from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
 import { TextInput, Button } from "react-native-paper";
@@ -8,10 +12,10 @@ import { AntDesign } from "@expo/vector-icons";
 import firebase from "../api/firebase";
 import { FirebaseRecaptchaVerifierModal, FirebaseRecaptchaBanner } from 'expo-firebase-recaptcha';
 
+//Page and functions
 const AdminAuthentication = ({ route, navigation }) => {
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
-
   const recaptchaVerifier = React.useRef(null);
   const [verificationId, setVerificationId] = React.useState();
   const [verificationCode, setVerificationCode] = React.useState();
@@ -20,7 +24,7 @@ const AdminAuthentication = ({ route, navigation }) => {
     : undefined;
   const attemptInvisibleVerification = false;
   
-
+//Phone number authentication function working with firebase
   onButtonClick = async () =>
   {
     await firestore()
@@ -48,7 +52,7 @@ const AdminAuthentication = ({ route, navigation }) => {
       })
     }
  
-
+//Password modal, enter password through it
   onModalButtonClick = async () =>
   {
     try {
@@ -143,6 +147,8 @@ const AdminAuthentication = ({ route, navigation }) => {
     </View>
   );
 };
+
+//Styling for the various components.
 const styles = StyleSheet.create({
   container: {
     flex: 1,
