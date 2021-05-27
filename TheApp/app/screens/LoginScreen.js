@@ -18,6 +18,7 @@ import { useFonts } from "expo-font";
 import { TextInput } from "react-native-paper";
 import { useEffect } from "react/cjs/react.production.min";
 import {auth} from "../api/firebase"
+import { AntDesign,Ionicons,FontAwesome5 } from '@expo/vector-icons'; 
 
 //Login screen and functions
 const LoginScreen = ({ navigation }) => {
@@ -111,6 +112,7 @@ const LoginScreen = ({ navigation }) => {
               <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
                 {" "}
                 לעזרה דחופה
+                <FontAwesome5 name="hands-helping" size={24} color="black" />
               </Text>
             </Button>
             </View>
@@ -125,7 +127,7 @@ const LoginScreen = ({ navigation }) => {
         >
           שם:
         </Text>
-        <TextInput
+        <TextInput placeholder="אנא הזן את שמך בעברית"
           style={{ textAlign: "right", writingDirection: "rtl" }}
           mode="outlined"
           value={nameText}
@@ -144,7 +146,7 @@ const LoginScreen = ({ navigation }) => {
         >
           אימייל:
         </Text>
-        <TextInput
+        <TextInput placeholder="אנא הזן את כתובת המייל שלך"
           style={{ textAlign: "right", writingDirection: "rtl" }}
           mode="outlined"
           value={emailText}
@@ -167,6 +169,7 @@ const LoginScreen = ({ navigation }) => {
           >
             <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
               {" "}
+              <Ionicons name="md-enter-sharp" size={24} color="black" />
               כניסה
             </Text>
           </Button>
@@ -183,6 +186,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "#FFEBCD",
+    
+  },
+  input: {
+    margin: 15,
+    borderColor: 'black',
+    borderWidth: 1,
+    writingDirection: "rtl",
+    textAlign: "right",
   },
   space: {
     width: 20, 

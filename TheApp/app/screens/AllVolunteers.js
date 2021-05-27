@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import { Button ,TextInput } from "react-native-paper";
 import { firestore } from "../api/firebase";
+import { Feather,AntDesign,FontAwesome  } from '@expo/vector-icons';
 
 //All volunteers page and his functions
 const AllVolunteers = ({ route, navigation }) => {
@@ -169,7 +170,7 @@ const AllVolunteers = ({ route, navigation }) => {
             מיון המשתמשים
           </Text>
           <Text style={{ textAlign: "right", writingDirection: "rtl" }}>שם:</Text>
-          <TextInput
+          <TextInput  placeholder = "שם"
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
             value={nameSort}
@@ -177,7 +178,7 @@ const AllVolunteers = ({ route, navigation }) => {
             selectionColor="#0000FF"
           />
           <Text style={{ textAlign: "right", writingDirection: "rtl" }}>שם משפחה:</Text>
-          <TextInput
+          <TextInput placeholder = "שם משפחה"
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
             value={lastNameSort}
@@ -185,7 +186,7 @@ const AllVolunteers = ({ route, navigation }) => {
             selectionColor="#0000FF"
           />
           <Text style={{ textAlign: "right", writingDirection: "rtl" }}>סוג עזרה:</Text>
-          <TextInput
+          <TextInput placeholder = "סוג עזרה"
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
             value={helpTypeSort}
@@ -193,7 +194,7 @@ const AllVolunteers = ({ route, navigation }) => {
             selectionColor="#0000FF"
           />
           <Text style={{ textAlign: "right", writingDirection: "rtl" }}>עיר:</Text>
-          <TextInput
+          <TextInput placeholder = "עיר"
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
             value={citySort}
@@ -201,11 +202,12 @@ const AllVolunteers = ({ route, navigation }) => {
             selectionColor="#0000FF"
           />
           <Button
-                color="red"
+                color="black"
                 compact="true"
                 onPress={handleClickSort}
               >
-                <Text style={{ fontSize: 20 }}> מיין</Text>
+                <Feather name ="search" size={24} color="black"/>
+                <Text style={{ fontSize: 20 }}> חפש</Text>
               </Button>
         </View>
         {all_volunteers.map((item, key) => {
@@ -225,21 +227,23 @@ const AllVolunteers = ({ route, navigation }) => {
               <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
               <Text style={styles.text}>סוג עזרה: {item.helpType}</Text>
               <Button
-                color="red"
+                color="black"
                 compact="true"
                 onPress={() =>
                   handleClickDelete(item.firstName, item.lastName, key)
                 }
               >
+                <AntDesign name="deleteuser" size={24} color="black" />
                 <Text style={{ fontSize: 20 }}> מחיקה</Text>
               </Button>
               <Button
-                color="red"
+                color="black"
                 compact="true"
                 onPress={() =>
                   handleClickUpdate(item.firstName, item.lastName, key)
                 }
               >
+                <FontAwesome name="edit" size={24} color="black" />
                 <Text style={{ fontSize: 20 }}> עריכה</Text>
               </Button>
             </View>
@@ -265,7 +269,7 @@ const AllVolunteers = ({ route, navigation }) => {
       contentContainerStyle={{ backgroundColor: "#F8F8FF" }}
     >
                     <Button
-                color="red"
+                color="black"
                 compact="true"
                 onPress={handleClickGoBack}
               >
