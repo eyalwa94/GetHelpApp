@@ -1,3 +1,7 @@
+//User help screen
+//The user log in and choose the needed help
+
+//import
 import React from "react";
 import {
   ImageBackground,
@@ -12,7 +16,7 @@ import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
 import { firestore } from "../api/firebase";
 
-
+//User page and the functions it included
 const ChooseHelpScreen = ({ route, navigation }) => {
   const [helpChosen, setHelpChosen] = React.useState("");
 
@@ -20,8 +24,9 @@ const ChooseHelpScreen = ({ route, navigation }) => {
   let screenText = " שלום" + userName + " מה שלומך ";
   let all_volunteers=[];
 
-
-  function handleClick(route) {
+//Moving to the chosen help page , including taking volunteers from the firebase.
+  function handleClick(route) // Gets all the volunteers into array, send it to the help screen
+   {
     all_volunteers=[];
     firestore()
     .collection("Volunteers")
@@ -32,11 +37,11 @@ const ChooseHelpScreen = ({ route, navigation }) => {
       })
     })
     .then(() => {
-      //console.log(all_volunteers[0]);
-      navigation.navigate("Help", {all_volunteers: all_volunteers }); //********************* */
+      navigation.navigate("Help", {all_volunteers: all_volunteers }); // navigate to help screen
     })
   }
 
+  //font
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/500.ttf"),
   });
@@ -116,16 +121,16 @@ const ChooseHelpScreen = ({ route, navigation }) => {
   );
 };
 
+//styling page
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "whitesmoke",
   },
   space: {
-    width: 20, // or whatever size you need
+    width: 20, 
     height: 20,
   },
-
   text:{
     fontFamily: "Montserrat",
      fontSize: 30
@@ -146,3 +151,4 @@ const styles = StyleSheet.create({
 
 });
 export default ChooseHelpScreen;
+

@@ -1,20 +1,22 @@
+//Add volunteer page  - Admin Screen
+// Import
 import React from "react";
 import { View, Text, StyleSheet,ScrollView, Alert ,Modal } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
 
 
-
+// Page and functions
 const AddVolunteer = ({ route, navigation }) => {
-    const [firstName, setFirstName] = React.useState("");
+    const [firstName, setFirstName] = React.useState(""); 
     const [lastName, setLastName] = React.useState("");
     const [city, setCity] = React.useState("");
     const [phone, setPhone] = React.useState("");
     const [helpType, setHelpType] = React.useState("");
     const [calendlyLink, setCalendlyLink] = React.useState("");
   
-  
-    handleClickSend = () => {
+  //Add new volunteer to firebase
+    handleClickSend = () => { 
       firestore()
         .collection("Volunteers")
         .add({
@@ -25,7 +27,7 @@ const AddVolunteer = ({ route, navigation }) => {
           helpType: helpType,
           calendlyLink:calendlyLink,
         })
-        .then(() => {
+        .then(() => { 
           setFirstName("");
           setLastName("");
           setCity("");
@@ -38,11 +40,12 @@ const AddVolunteer = ({ route, navigation }) => {
           alert(err);
         });
     };
-  
  
+ // Page view , Init data into the variables
+ //Including all paramteres that needed to the firebase.
     return (
       <ScrollView style={{ margin: 10 }}>
-        <Text style={styles.text}>שם:</Text>
+        <Text style={styles.text}>שם:</Text> 
         <TextInput
           style={{ textAlign: "right", writingDirection: "rtl" }}
           mode="outlined"
@@ -112,14 +115,15 @@ const AddVolunteer = ({ route, navigation }) => {
       </ScrollView>
     );
   };
-//https://calendly.com/ziv-birer/rabbi
+
+//Styling for the various components
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "whitesmoke",
   },
   space: {
-    width: 20, // or whatever size you need
+    width: 20, 
     height: 20,
   },
   text:{

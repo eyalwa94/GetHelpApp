@@ -1,3 +1,7 @@
+//Login screen
+//For the admin and also the user
+
+//import
 import React from "react";
 import {
   ImageBackground,
@@ -17,12 +21,11 @@ import { TextInput } from "react-native-paper";
 import { useEffect } from "react/cjs/react.production.min";
 import {auth} from "../api/firebase"
 
-
+//Login screen and functions
 const LoginScreen = ({ navigation }) => {
   const [nameText, setNameText] = React.useState("");
   const [emailText, setEmailText] = React.useState("");
   const [password, setPassword] = React.useState("1234");
-
   const[errorEmail,setErrorEmail]=React.useState("");
   const[errorName,setErrorName]=React.useState("");
   const[validEmail,setValidEmail]=React.useState(false);
@@ -37,21 +40,25 @@ const LoginScreen = ({ navigation }) => {
     return null;
   }
 
+  //Check if the validation functions were ok, if so go to the next page.
   function handleClickEnter() {
      
       if(validEmail==true && validName==true)
       {
+        //navigate into ChooseHelp screen
       navigation.navigate("ChooseHelp", {
         userName: nameText,
         userEmail: emailText,
       });
       }
-      else{
+      else // in case the validation fail we pop up alert
+      {
         Alert.alert("שגיאה","אנא הזן שם ואימייל תקניים",[{text:"אישור"}])
       }
     
   }
 
+  //check for valid mail
   function emailValidation()
   {
     let re = /\S+@\S+\.\S+/;
@@ -67,6 +74,7 @@ const LoginScreen = ({ navigation }) => {
     }  
   }
 
+  //check for valid name
   function nameValidation()
   {
     if (nameText == password) 
@@ -219,6 +227,8 @@ const LoginScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+//Styling
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -226,7 +236,7 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke",
   },
   space: {
-    width: 20, // or whatever size you need
+    width: 20, 
     height: "15%",
   },
   input: {

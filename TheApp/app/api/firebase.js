@@ -1,7 +1,9 @@
+/* @@@@@ Firebase API @@@@ */
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+// Create firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAK7lsv_alk2yw9_u1dLoQa0SxLjZAOdnQ",
   authDomain: "get-help-app-proj.firebaseapp.com",
