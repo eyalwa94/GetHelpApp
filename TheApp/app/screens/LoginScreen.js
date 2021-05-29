@@ -8,10 +8,12 @@ import {
   Alert,
   SafeAreaView,
   Linking,
+  KeyboardAvoidingView,
 } from "react-native";
 import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
 import { TextInput } from "react-native-paper";
+
 import { useEffect } from "react/cjs/react.production.min";
 import {auth} from "../api/firebase"
 
@@ -85,10 +87,10 @@ const LoginScreen = ({ navigation }) => {
     }  
   }
   }
-
+///////////////////////////////////////////////////////////
   return (
     <SafeAreaView style={styles.container}>
-      
+
       
       <View style={{flex:1 , alignItems:"stretch" , alignContent:"center"}}>
              <Button
@@ -126,8 +128,12 @@ const LoginScreen = ({ navigation }) => {
                           alignSelf:"right" ,
                            alignContent:"right",
                            marginTop: 20,
+                           borderRadius: 110,
                            width: 80,
-                           height: 80,}} 
+                           height: 80,
+                           position: 'absolute', 
+                           right: 0,
+                          }} 
                 source={require('../assets/BatKol.jpg')} />
             </View>
             <View >
@@ -136,37 +142,59 @@ const LoginScreen = ({ navigation }) => {
         textShadowOffset: {width: -1, height: 0},
         textShadowRadius: 15,color: "rgb(202, 197, 197)", 
         textShadowColor: 'black', fontWeight: '600',shadowOpacity: 0.2,
-        letterSpacing: 10,}}
+        letterSpacing:4, marginBottom: 30}}
         >
           GetHelp
         </Text>
       </View>
-      <View style={{marginTop:30, alignItems: 'center',textAlign: "center"}}>
+      
+      <View style={{margin:10}}>
+        <Text
+          style={{
+            fontFamily: "Montserrat",
+            textAlign: "right",
+            writingDirection: "rtl",
+            fontSize: 28,position: 'absolute', 
+            right: 0,
+          }}
+        >
+          שם:
+        </Text>
         <TextInput
-          style={{ width:"90%", textAlign: "center", writingDirection: "rtl" }}
-          placeholder="שם.."
-          mode="outlined"
+          style={{ textAlign: "right", writingDirection: "rtl",width:'90%', height: 50, }}
+          placeholder=""
           value={nameText}
           onChangeText={(text) => setNameText(text)}
-          selectionColor="#0000FF"
+          selectionColor="black"
           onEndEditing={nameValidation}
-          backgroundColor="rgb(202, 197, 197)"
-          flexGrow="1"
-          />
-      </View>
-      <View style={{ flex: 1,flexDirection: "row-reverse", alignSelf:"center"}}>
+        />
+        <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorName}</Text>
+        </View>
+        <View>
+        <Text
+          style={{
+            fontFamily: "Montserrat",
+            textAlign: "right",
+            writingDirection: "rtl",
+            fontSize: 28,position: 'absolute', 
+            right: 0,
+          }}
+        >
+          אימייל:
+        </Text>
         <TextInput
-          style={{width:"86%", textAlign: "center", writingDirection: "rtl" }}
-          placeholder="אימייל.."
-          mode="outlined"
+          style={{ textAlign: "right", writingDirection: "rtl",
+        width:'82%', height: 50, marginLeft: 10}}
+        placeholder="address@email.com"
           value={emailText}
           onChangeText={(text) => setEmailText(text)}
-          selectionColor="#0000FF"
+          selectionColor="black"
           onEndEditing={emailValidation}
-          backgroundColor="rgb(202, 197, 197)"
         />
         <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorEmail}</Text>
+      
       </View>
+
       <View style={styles.space} />
       <View>
         <View style={{ height: 10 }} />
