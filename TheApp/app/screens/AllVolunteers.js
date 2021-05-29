@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import { Button ,TextInput } from "react-native-paper";
 import { firestore } from "../api/firebase";
+import RNPickerSelect from 'react-native-picker-select';
 
 //All volunteers page and his functions
 const AllVolunteers = ({ route, navigation }) => {
@@ -96,7 +97,7 @@ const AllVolunteers = ({ route, navigation }) => {
         //Navigates to the UpdateVol page and send there the volunteer that need to be updated
         navigation.navigate("UpdateVol", {
           chosen_volunteer: chosen_volunteer,
-        }); 
+        }); //******* */
       });
   };
 
@@ -185,13 +186,30 @@ const AllVolunteers = ({ route, navigation }) => {
             selectionColor="#0000FF"
           />
           <Text style={{fontFamily: "Montserrat",fontSize:25, textAlign: "right", writingDirection: "rtl" }}>סוג עזרה:</Text>
-          <TextInput
+          <RNPickerSelect 
+          placeholder={{
+            label: 'Select a type...',
+            value: null,            
+          }}
+          items={[
+            {label:"שיחה עם רב", value:"רב"},
+            {label:"מקום לינה", value:"מקום ללון"},
+            {label:"ארוחה חמה", value:"אוכל"},
+            {label:"שיחת עידוד", value:"עוד משו"},
+
+          ]}
+          onValueChange={(value) => {setHelpTypeSort({value});}}
+          >
+          
+        </RNPickerSelect>
+          {/* <TextInput
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
             value={helpTypeSort}
-            onChangeText={(text) => setHelpTypeSort(text)}
+            onChangeText={(text) => console.log(text)}
+            
             selectionColor="#0000FF"
-          />
+          /> */}
           <Text style={{fontFamily: "Montserrat",fontSize:25, textAlign: "right", writingDirection: "rtl" }}>עיר:</Text>
           <TextInput
             style={{ textAlign: "right", writingDirection: "rtl" }}

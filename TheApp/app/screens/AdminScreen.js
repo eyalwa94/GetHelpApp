@@ -41,28 +41,31 @@ const AdminScreen = ({ route, navigation }) => {
   return (
     <View style={{ marginTop:100, flex: "col", justifyContent: "center", alignItems: "center" }}>
                <Button
-          style={{ width: "70%" }}
+          style={{ width: "70%" ,elevation: 10, borderColor: 'grey',
+          borderWidth: 2}}
           mode="contained"
           color="rgb(202, 197, 197)"
           compact="true"
           onPress={handleClickAddUser}
         >
-          <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}> הוספת מתנדב</Text>
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הוספת מתנדב</Text>
         </Button>
         <View style={styles.space} />
          <Button
-          style={{ width: "70%" }}
+          style={{ width: "70%",elevation: 10, borderColor: 'grey',
+          borderWidth: 2 }}
           mode="contained"
           color="rgb(202, 197, 197)"
           compact="true"
           onPress={handleClickShowAll}
         >
-          <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}> רשימת המתנדבים עריכה/מחיקה</Text>
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> רשימת המתנדבים עריכה/מחיקה</Text>
         </Button>
         <View style={styles.space} />
 
         <Button
-          style={{ width: "70%" }}
+          style={{ width: "70%",elevation: 10, borderColor: 'grey',
+          borderWidth: 2 }}
           mode="contained"
           color="rgb(202, 197, 197)"
           compact="true"
@@ -71,7 +74,7 @@ const AdminScreen = ({ route, navigation }) => {
             navigation.navigate("Login");
           }}
         >
-          <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}> התנתק</Text>
+          <Text style={{ fontFamily: "Montserrat", fontSize: 20, }}> התנתק</Text>
         </Button>
         
         

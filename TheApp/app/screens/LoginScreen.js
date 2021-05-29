@@ -113,7 +113,7 @@ const LoginScreen = ({ navigation }) => {
                 borderColor: 'red',
                 borderWidth: 3,
                 marginLeft: 5,
-}}
+              }}
               mode="contained"
               color="red"
               compact="true"

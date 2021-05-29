@@ -1,12 +1,11 @@
 //Add volunteer page  - Admin Screen
 // Import
 import React from "react";
-import { View, Text, StyleSheet,ScrollView, Alert ,Modal } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert ,Modal } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
+import RNPickerSelect from 'react-native-picker-select';
 
-
-// Page and functions
 const AddVolunteer = ({ route, navigation }) => {
     const [firstName, setFirstName] = React.useState(""); 
     const [lastName, setLastName] = React.useState("");
@@ -78,14 +77,25 @@ const AddVolunteer = ({ route, navigation }) => {
           backgroundColor="rgb(202, 197, 197)"
           keyboardType="phone-pad"
         />
+
         <Text style={styles.text}>סוג עזרה:</Text>
-        <TextInput
-          style={{ textAlign: "right", writingDirection: "rtl" }}
-          mode="outlined"
-          value={helpType}
-          onChangeText={(text) => setHelpType(text)}
-          backgroundColor="rgb(202, 197, 197)"
-        />
+        <RNPickerSelect 
+          placeholder={{
+            label: 'Select a type...',
+            value: null,            
+          }}
+          items={[
+            {label:"שיחה עם רב", value:"שיחה עם רב"},
+            {label:"מקום לינה", value:"מקום לינה"},
+            {label:"ארוחה חמה", value:"ארוחה חמה"},
+            {label:"שיחת עידוד", value:"שיחת עידוד"},
+
+          ]}
+          onValueChange={(value) => {setHelpType({value});}}
+          >
+          
+        </RNPickerSelect>
+        
         <Text style={styles.text}>קישור לקלנדלי:</Text>
         <TextInput
           style={{ textAlign: "right", writingDirection: "rtl" }}
