@@ -56,17 +56,17 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           fontSize: 30,
           flexDirection: "row-reverse",
           marginLeft: "5%",
-          marginTop: "5%",
+          marginTop: "10%",
         }}
       >
-        שלום {userName} {"\n"} תוכל לקבל פה עזרה במגוון נושאים :
+        שלום {userName}, {"\n"}תוכלי לקבל פה עזרה במגוון נושאים לבחירתך :
       </Text>
 
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={{marginTop:-200 ,flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Button
           style={{ width: "70%" }}
           mode="contained"
-          color="yellow"
+          color="rgb(202, 197, 197)"
           compact="true"
           onPress={() => handleClick("רב")}
         >
@@ -79,7 +79,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
         <Button
           style={{ width: "70%" }}
           mode="contained"
-          color="green"
+          color="rgb(202, 197, 197)"
           compact="true"
           onPress={() => handleClick("מקום ללון")}
         >
@@ -92,7 +92,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
         <Button
           style={{ width: "70%" }}
           mode="contained"
-          color="purple"
+          color="rgb(202, 197, 197)"
           compact="true"
           onPress={() => handleClick("אוכל")}
         >
@@ -102,7 +102,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
         <Button
           style={{ width: "70%" }}
           mode="contained"
-          color="orange"
+          color="rgb(202, 197, 197)"
           compact="true"
           onPress={() => handleClick("עוד משו")}
         >
@@ -119,7 +119,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFEBCD",
+    backgroundColor: "whitesmoke",
   },
   space: {
     width: 20, // or whatever size you need

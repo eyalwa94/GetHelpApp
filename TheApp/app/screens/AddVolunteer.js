@@ -48,7 +48,7 @@ const AddVolunteer = ({ route, navigation }) => {
           mode="outlined"
           value={firstName}
           onChangeText={(text) => setFirstName(text)}
-          selectionColor="#0000FF"
+          backgroundColor="rgb(202, 197, 197)"
         />
         <Text style={styles.text}>משפחה שם:</Text>
         <TextInput
@@ -56,7 +56,7 @@ const AddVolunteer = ({ route, navigation }) => {
           mode="outlined"
           value={lastName}
           onChangeText={(text) => setLastName(text)}
-          selectionColor="#0000FF"
+          backgroundColor="rgb(202, 197, 197)"
         />
         <Text style={styles.text}>עיר:</Text>
         <TextInput
@@ -64,7 +64,7 @@ const AddVolunteer = ({ route, navigation }) => {
           mode="outlined"
           value={city}
           onChangeText={(text) => setCity(text)}
-          selectionColor="#0000FF"
+          backgroundColor="rgb(202, 197, 197)"
         />
         <Text style={styles.text}>טלפון:</Text>
         <TextInput
@@ -72,7 +72,7 @@ const AddVolunteer = ({ route, navigation }) => {
           mode="outlined"
           value={phone}
           onChangeText={(text) => setPhone(text)}
-          selectionColor="#0000FF"
+          backgroundColor="rgb(202, 197, 197)"
           keyboardType="phone-pad"
         />
         <Text style={styles.text}>סוג עזרה:</Text>
@@ -81,7 +81,7 @@ const AddVolunteer = ({ route, navigation }) => {
           mode="outlined"
           value={helpType}
           onChangeText={(text) => setHelpType(text)}
-          selectionColor="#0000FF"
+          backgroundColor="rgb(202, 197, 197)"
         />
         <Text style={styles.text}>קישור לקלנדלי:</Text>
         <TextInput
@@ -89,7 +89,7 @@ const AddVolunteer = ({ route, navigation }) => {
           mode="outlined"
           value={calendlyLink}
           onChangeText={(text) => setCalendlyLink(text)}
-          selectionColor="#0000FF"
+          backgroundColor="rgb(202, 197, 197)"
         />
         <View
           style={{
@@ -100,13 +100,13 @@ const AddVolunteer = ({ route, navigation }) => {
           }}
         >
           <Button
-            style={{ width: "50%", marginEnd: 5 }}
+            style={{ marginTop:30, width: "50%", marginEnd: 5 }}
             mode="contained"
-            color="green"
+            color="rgb(202, 197, 197)"
             compact="true"
             onPress={handleClickSend}
           >
-            <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הוספה</Text>
+            <Text style={{ fontFamily: "Montserrat",textAlign:"center", fontSize: 23 }}> הוספה</Text>
           </Button>
          </View>
       </ScrollView>
@@ -116,7 +116,7 @@ const AddVolunteer = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFEBCD",
+    backgroundColor: "whitesmoke",
   },
   space: {
     width: 20, // or whatever size you need
@@ -125,6 +125,9 @@ const styles = StyleSheet.create({
   text:{
     textAlign: "right",
     writingDirection: "rtl",
+    fontFamily: "Montserrat",
+    fontSize:23,
+    fontWeight: 'bold'
   }
 });
 

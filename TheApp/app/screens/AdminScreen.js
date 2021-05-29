@@ -37,11 +37,11 @@ const AdminScreen = ({ route, navigation }) => {
   };
   
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={{ marginTop:100, flex: "col", justifyContent: "center", alignItems: "center" }}>
                <Button
           style={{ width: "70%" }}
           mode="contained"
-          color="green"
+          color="rgb(202, 197, 197)"
           compact="true"
           onPress={handleClickAddUser}
         >
@@ -51,7 +51,7 @@ const AdminScreen = ({ route, navigation }) => {
          <Button
           style={{ width: "70%" }}
           mode="contained"
-          color="blue"
+          color="rgb(202, 197, 197)"
           compact="true"
           onPress={handleClickShowAll}
         >
@@ -62,7 +62,7 @@ const AdminScreen = ({ route, navigation }) => {
         <Button
           style={{ width: "70%" }}
           mode="contained"
-          color="red"
+          color="rgb(202, 197, 197)"
           compact="true"
           onPress={() => {
             auth().signOut();
