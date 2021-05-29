@@ -73,30 +73,29 @@ const AdminAuthentication = ({ route, navigation }) => {
         firebaseConfig={firebaseConfig}
         attemptInvisibleVerification={attemptInvisibleVerification}
       />
-      <Text
-        style={{
-          fontFamily: "Montserrat",
-          textAlign: "right",
-          writingDirection: "rtl",
-          fontSize: 30,
-          margin: 10,
-        }}
-      >
-        מספר טלפון:
-      </Text>
-      <TextInput
-        style={{ margin: 10 }}
+      <Text style={{fontSize: 50, textAlign:"center",marginTop: -300,
+        marginBottom:100,fontFamily:"Comic Sans MS", textShadowColor: 'white',
+        textShadowOffset: {width: -1, height: 0},
+        textShadowRadius: 15,color: "rgb(202, 197, 197)", 
+        textShadowColor: 'white', fontWeight: '600',shadowOpacity: 0.8,
+        letterSpacing: 10,}}
+        >
+          אימות טלפוני
+        </Text>
+      <TextInput style={{width:"85%",alignSelf:"center", textAlign: "center", writingDirection: "rtl", marginBottom:30 }}
+        placeholder="מספר טלפון:"
+        fontFamily= "Montserrat"
         mode="outlined"
         value={phoneNumber}
         onChangeText={(text) => setPhoneNumber(text)}
-        selectionColor="#0000FF"
+        selectionColor="rgb(202, 197, 197)"
         keyboardType="phone-pad"
       />
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Button
           style={{ width: "70%" }}
           mode="contained"
-          color="yellow"
+          color="rgb(202, 197, 197)"
           compact="true"
           onPress={async () => {await onButtonClick()}}
         >
@@ -153,7 +152,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#FFEBCD",
+    backgroundColor: "whitesmoke",
   },
 });
 export default AdminAuthentication;

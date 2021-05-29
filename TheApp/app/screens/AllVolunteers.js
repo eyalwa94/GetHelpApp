@@ -159,16 +159,16 @@ const AllVolunteers = ({ route, navigation }) => {
     return (
       <ScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{ backgroundColor: "#F8F8FF" }}
+        contentContainerStyle={{ backgroundColor: "whitesmoke" }}
       >
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <Text style={{ fontSize: 30 }}>כל המתנדבים</Text>
+        <View style={{justifyContent: "center", alignItems: "center" }}>
+          <Text style={{fontFamily: "Montserrat",fontSize:40,}}>כל המתנדבים:</Text>
         </View>
         <View>
-          <Text style={{ textAlign: "right", writingDirection: "rtl" }}>
-            מיון המשתמשים
+          <Text style={{fontFamily: "Montserrat",fontSize:30, textAlign: "right", writingDirection: "rtl" }}>
+            מיון המשתמשים:
           </Text>
-          <Text style={{ textAlign: "right", writingDirection: "rtl" }}>שם:</Text>
+          <Text style={{fontFamily: "Montserrat",fontSize:25, textAlign: "right", writingDirection: "rtl" }}>שם:</Text>
           <TextInput
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
@@ -176,7 +176,7 @@ const AllVolunteers = ({ route, navigation }) => {
             onChangeText={(text) => setNameSort(text)}
             selectionColor="#0000FF"
           />
-          <Text style={{ textAlign: "right", writingDirection: "rtl" }}>שם משפחה:</Text>
+          <Text style={{fontFamily: "Montserrat",fontSize:25, textAlign: "right", writingDirection: "rtl" }}>שם משפחה:</Text>
           <TextInput
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
@@ -184,7 +184,7 @@ const AllVolunteers = ({ route, navigation }) => {
             onChangeText={(text) => setLastNameSort(text)}
             selectionColor="#0000FF"
           />
-          <Text style={{ textAlign: "right", writingDirection: "rtl" }}>סוג עזרה:</Text>
+          <Text style={{fontFamily: "Montserrat",fontSize:25, textAlign: "right", writingDirection: "rtl" }}>סוג עזרה:</Text>
           <TextInput
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
@@ -192,7 +192,7 @@ const AllVolunteers = ({ route, navigation }) => {
             onChangeText={(text) => setHelpTypeSort(text)}
             selectionColor="#0000FF"
           />
-          <Text style={{ textAlign: "right", writingDirection: "rtl" }}>עיר:</Text>
+          <Text style={{fontFamily: "Montserrat",fontSize:25, textAlign: "right", writingDirection: "rtl" }}>עיר:</Text>
           <TextInput
             style={{ textAlign: "right", writingDirection: "rtl" }}
             mode="outlined"
@@ -201,7 +201,9 @@ const AllVolunteers = ({ route, navigation }) => {
             selectionColor="#0000FF"
           />
           <Button
-                color="red"
+                style={{ alignSelf:"center",width: "70%" ,marginBottom:20, marginTop:20}}
+                mode="contained"
+                color="rgb(202, 197, 197)"
                 compact="true"
                 onPress={handleClickSort}
               >
@@ -225,8 +227,9 @@ const AllVolunteers = ({ route, navigation }) => {
               <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
               <Text style={styles.text}>סוג עזרה: {item.helpType}</Text>
               <Button
-                color="red"
-                compact="true"
+                style={{ alignSelf:"center",width: "70%" ,marginBottom:20}}
+                mode="contained"
+                color="rgb(202, 197, 197)"
                 onPress={() =>
                   handleClickDelete(item.firstName, item.lastName, key)
                 }
@@ -234,8 +237,9 @@ const AllVolunteers = ({ route, navigation }) => {
                 <Text style={{ fontSize: 20 }}> מחיקה</Text>
               </Button>
               <Button
-                color="red"
-                compact="true"
+                style={{ alignSelf:"center",width: "70%" ,marginBottom:20}}
+                mode="contained"
+                color="rgb(202, 197, 197)"
                 onPress={() =>
                   handleClickUpdate(item.firstName, item.lastName, key)
                 }
@@ -288,7 +292,9 @@ const AllVolunteers = ({ route, navigation }) => {
           <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
           <Text style={styles.text}>סוג עזרה: {item.helpType}</Text>
           <Button
-            color="red"
+            style={{ width: "70%" ,marginBottom:150}}
+            mode="contained"
+            color="rgb(202, 197, 197)"
             compact="true"
             onPress={() =>
               handleClickDelete(item.firstName, item.lastName, key)
@@ -297,7 +303,9 @@ const AllVolunteers = ({ route, navigation }) => {
             <Text style={{ fontSize: 20 }}> מחיקה</Text>
           </Button>
           <Button
-            color="red"
+            style={{ width: "70%" ,marginBottom:150}}
+            mode="contained"
+            color="rgb(202, 197, 197)"
             compact="true"
             onPress={() =>
               handleClickUpdate(item.firstName, item.lastName, key)
@@ -325,9 +333,11 @@ const styles = StyleSheet.create({
     height: 20,
   },
   text: {
-    textAlign: "right",
-    writingDirection: "rtl",
-    fontSize: 20,
+      textAlign: "right",
+      writingDirection: "rtl",
+      fontFamily: "Montserrat",
+      fontSize:23,
+      fontWeight: 'bold'
   },
 });
 

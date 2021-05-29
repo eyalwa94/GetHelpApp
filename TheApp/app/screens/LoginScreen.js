@@ -96,9 +96,22 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{flex:0.3 , alignItems:"center" , alignContent:"center"}}>
+      
+      
+      <View style={{flex:1 , alignItems:"stretch" , alignContent:"center"}}>
              <Button
-              style={{ width: "50%", borderRadius: 70 }}
+              style={{marginTop: 20,
+                width: 120,
+                height: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 100,
+                backgroundColor: '#aaa',
+                elevation: 10, 
+                borderColor: 'red',
+                borderWidth: 3,
+                marginLeft: 5,
+}}
               mode="contained"
               color="red"
               compact="true"
@@ -108,49 +121,57 @@ const LoginScreen = ({ navigation }) => {
                 );
               }}
             >
-              <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
-                {" "}
-                לעזרה דחופה
+              <Text style={{ fontSize: 22,
+                            lineHeight: 21,
+                            fontWeight: 'bold',
+                            letterSpacing: 0.25,
+                            color: 'white',fontFamily: "Montserrat" }}>
+                עזרה דחופה
               </Text>
+              
             </Button>
+            <Image style={{
+                          alignSelf:"right" ,
+                           alignContent:"right",
+                           marginTop: 20,
+                           width: 80,
+                           height: 80,}} 
+                source={require('../assets/BatKol.jpg')} />
             </View>
-      <View style={{margin:10}}>
-        <Text
-          style={{
-            fontFamily: "Montserrat",
-            textAlign: "right",
-            writingDirection: "rtl",
-            fontSize: 30,
-          }}
+            <View >
+        <Text style={{fontSize: 80, textAlign:"center",
+        fontFamily:"Comic Sans MS", textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 0},
+        textShadowRadius: 15,color: "rgb(202, 197, 197)", 
+        textShadowColor: 'black', fontWeight: '600',shadowOpacity: 0.2,
+        letterSpacing: 10,}}
         >
-          שם:
+          GetHelp
         </Text>
+      </View>
+      <View style={{marginTop:30, alignItems: 'center',textAlign: "center"}}>
         <TextInput
-          style={{ textAlign: "right", writingDirection: "rtl" }}
+          style={{ width:"90%", textAlign: "center", writingDirection: "rtl" }}
+          placeholder="שם.."
           mode="outlined"
           value={nameText}
           onChangeText={(text) => setNameText(text)}
           selectionColor="#0000FF"
           onEndEditing={nameValidation}
-        />
-        <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorName}</Text>
-        <Text
-          style={{
-            fontFamily: "Montserrat",
-            textAlign: "right",
-            writingDirection: "rtl",
-            fontSize: 30,
-          }}
-        >
-          אימייל:
-        </Text>
+          backgroundColor="rgb(202, 197, 197)"
+          flexGrow="1"
+          />
+      </View>
+      <View style={{ flex: 1,flexDirection: "row-reverse", alignSelf:"center"}}>
         <TextInput
-          style={{ textAlign: "right", writingDirection: "rtl" }}
+          style={{width:"86%", textAlign: "center", writingDirection: "rtl" }}
+          placeholder="אימייל.."
           mode="outlined"
           value={emailText}
           onChangeText={(text) => setEmailText(text)}
           selectionColor="#0000FF"
           onEndEditing={emailValidation}
+          backgroundColor="rgb(202, 197, 197)"
         />
         <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorEmail}</Text>
       </View>
@@ -159,10 +180,12 @@ const LoginScreen = ({ navigation }) => {
         <View style={{ height: 10 }} />
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <Button
-            style={{ width: "70%" }}
+            style={{ width: "70%" ,marginBottom:150,elevation: 10, borderColor: 'grey',
+            borderWidth: 2,}}
             mode="contained"
-            color="yellow"
+            color="rgb(202, 197, 197)"
             compact="true"
+  
             onPress={handleClickEnter}
           >
             <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
@@ -182,11 +205,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#FFEBCD",
+    backgroundColor: "whitesmoke",
   },
   space: {
     width: 20, 
     height: "15%",
   },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+  },
 });
+
 export default LoginScreen;
+
+//b5aab5
