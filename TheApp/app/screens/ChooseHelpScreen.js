@@ -64,12 +64,12 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           marginTop: "10%",
         }}
       >
-        שלום {userName}, {"\n"}תוכלי לקבל פה עזרה במגוון נושאים לבחירתך :
+        שלום {userName}, {"\n"}בחרי את סוג העזרה לה את זקוקה :
       </Text>
 
       <View style={{marginTop:-200 ,flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Button
-          style={{ width: "70%" }}
+          style={styles.button}
           mode="contained"
           color="rgb(202, 197, 197)"
           compact="true"
@@ -82,38 +82,38 @@ const ChooseHelpScreen = ({ route, navigation }) => {
         </Button>
         <View style={styles.space} />
         <Button
-          style={{ width: "70%" }}
+          style={styles.button}
           mode="contained"
           color="rgb(202, 197, 197)"
           compact="true"
-          onPress={() => handleClick("מקום ללון")}
+          onPress={() => handleClick("מקום לינה")}
         >
           <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
             {" "}
-            מקום ללון
+            מקום לינה
           </Text>
         </Button>
         <View style={styles.space} />
         <Button
-          style={{ width: "70%" }}
+          style={styles.button}
           mode="contained"
           color="rgb(202, 197, 197)"
           compact="true"
-          onPress={() => handleClick("אוכל")}
+          onPress={() => handleClick("ארוחה חמה")}
         >
-          <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}> אוכל</Text>
+          <Text style={styles.text}> ארוחה חמה</Text>
         </Button>
         <View style={styles.space} />
         <Button
-          style={{ width: "70%" }}
+          style={styles.button}
           mode="contained"
           color="rgb(202, 197, 197)"
           compact="true"
-          onPress={() => handleClick("עוד משו")}
+          onPress={() => handleClick("שיחת עידוד")}
         >
-          <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
+          <Text style={styles.text}>
             {" "}
-            עוד משו
+            שיחת עידוד
           </Text>
         </Button>
       </View>
@@ -131,7 +131,24 @@ const styles = StyleSheet.create({
     width: 20, 
     height: 20,
   },
-});
+  text:{
+    fontFamily: "Montserrat",
+     fontSize: 30
+  },
+  button : {
+  marginTop: 20,
+  width: "70%",    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: "rgb(202, 197, 197)",
+    elevation: 10, 
+    borderColor: 'black',
+    borderWidth: 1,
+    marginLeft: 5,
+    textAlign: 'center',
+  }
 
+});
 export default ChooseHelpScreen;
 
