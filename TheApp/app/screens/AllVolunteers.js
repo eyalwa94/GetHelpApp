@@ -115,10 +115,10 @@ const AllVolunteers = ({ route, navigation }) => {
       sort_was_made=true;
       sorted_volunteers = sorted_volunteers.filter(vol => vol.lastName==lastNameSort);
     }
-    if(helpTypeSort!="") // sort by help type
+    if(helpTypeSort.value!="" && helpTypeSort.value!=undefined) // sort by help type
     {
       sort_was_made=true;
-      sorted_volunteers = sorted_volunteers.filter(vol => vol.helpType==helpTypeSort);
+      sorted_volunteers = sorted_volunteers.filter(vol => vol.helpType==helpTypeSort.value);
     }
     if(citySort!="") // sort by city
     {

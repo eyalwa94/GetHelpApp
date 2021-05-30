@@ -133,8 +133,7 @@ const LoginScreen = ({ navigation }) => {
               
             </Button>
             <Image style={{
-                          alignSelf:"right" ,
-                           alignContent:"right",
+
                            marginTop: 20,
                            borderRadius: 110,
                            width: 80,
