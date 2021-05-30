@@ -123,7 +123,7 @@ const LoginScreen = ({ navigation }) => {
                 );
               }}
             >
-              <Text style={{ fontSize: 22,
+              <Text style={{ fontSize: 15,
                             lineHeight: 21,
                             fontWeight: 'bold',
                             letterSpacing: 0.25,
