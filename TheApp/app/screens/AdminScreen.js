@@ -6,6 +6,7 @@ import React from "react";
 import { View, Text, StyleSheet,ScrollView, Alert ,Modal } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
+import { AntDesign,Feather,FontAwesome ,MaterialIcons   } from '@expo/vector-icons'; 
 
 //Admin page and his functions
 const AdminScreen = ({ route, navigation }) => {
@@ -49,6 +50,7 @@ const AdminScreen = ({ route, navigation }) => {
           onPress={handleClickAddUser}
         >
           <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> הוספת מתנדב</Text>
+          <AntDesign name="adduser" size={20} color="black" />
         </Button>
         <View style={styles.space} />
          <Button
@@ -60,6 +62,7 @@ const AdminScreen = ({ route, navigation }) => {
           onPress={handleClickShowAll}
         >
           <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> רשימת המתנדבים עריכה/מחיקה</Text>
+          <Feather name="list" size={20} color="black" />
         </Button>
         <View style={styles.space} />
 
@@ -75,6 +78,7 @@ const AdminScreen = ({ route, navigation }) => {
           }}
         >
           <Text style={{ fontFamily: "Montserrat", fontSize: 20, }}> התנתק</Text>
+          <MaterialIcons name="logout" size={20} color="black" />
         </Button>
         
         

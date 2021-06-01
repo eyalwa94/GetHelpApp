@@ -15,6 +15,7 @@ import {
 import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
 import { firestore } from "../api/firebase";
+import { AntDesign,MaterialCommunityIcons,Ionicons   } from '@expo/vector-icons'; 
 
 //User page and the functions it included
 const ChooseHelpScreen = ({ route, navigation }) => {
@@ -78,6 +79,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
             {" "}
             שיחה עם רב
+            <AntDesign name="phone" size={24} color="black" />
           </Text>
         </Button>
         <View style={styles.space} />
@@ -91,6 +93,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
             {" "}
             מקום לינה
+            <AntDesign name="home" size={24} color="black" />
           </Text>
         </Button>
         <View style={styles.space} />
@@ -102,6 +105,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           onPress={() => handleClick("ארוחה חמה")}
         >
           <Text style={styles.text}> ארוחה חמה</Text>
+          <MaterialCommunityIcons name="food-variant" size={24} color="black" />
         </Button>
         <View style={styles.space} />
         <Button
@@ -114,6 +118,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           <Text style={styles.text}>
             {" "}
             שיחת עידוד
+            <Ionicons name="ios-happy-sharp" size={24} color="black" />
           </Text>
         </Button>
       </View>

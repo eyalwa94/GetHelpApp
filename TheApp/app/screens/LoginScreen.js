@@ -20,6 +20,7 @@ import { TextInput } from "react-native-paper";
 
 import { useEffect } from "react/cjs/react.production.min";
 import {auth} from "../api/firebase"
+import { AntDesign } from '@expo/vector-icons'; 
 
 //Login screen and functions
 const LoginScreen = ({ navigation }) => {
@@ -32,6 +33,11 @@ const LoginScreen = ({ navigation }) => {
   const[validName,setValidName]=React.useState(false);
 
 
+ 
+    let [fontsLoaded] = useFonts({
+      'Inter-SemiBoldItalic': 'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',
+    });
+  
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/500.ttf"),
   });
@@ -129,6 +135,7 @@ const LoginScreen = ({ navigation }) => {
                             letterSpacing: 0.25,
                             color: 'white',fontFamily: "Montserrat" }}>
                 עזרה דחופה
+                <AntDesign name="phone" size={20} color="white" />
               </Text>
               
             </Button>
@@ -216,7 +223,8 @@ const LoginScreen = ({ navigation }) => {
   
             onPress={handleClickEnter}
           >
-            <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
+            <Text style={{ fontFamily: "Montserrat", fontSize: 24 }}>
+            <AntDesign name="enter" size={24} color="black" />
               {" "}
               כניסה
             </Text>
