@@ -12,11 +12,13 @@ import {
   ScrollView,
   RefreshControl,
   Alert,
+  TouchableOpacity,
   
 } from "react-native";
 import { Button ,TextInput } from "react-native-paper";
 import { firestore } from "../api/firebase";
 import RNPickerSelect from 'react-native-picker-select';
+import { FontAwesome,AntDesign  } from '@expo/vector-icons'; 
 
 //All volunteers page and his functions
 const AllVolunteers = ({ route, navigation }) => {
@@ -218,7 +220,9 @@ const AllVolunteers = ({ route, navigation }) => {
             onChangeText={(text) => setCitySort(text)}
             selectionColor="#0000FF"
           />
+          
           <Button
+          
                 style={{ alignSelf:"center",width: "70%" ,marginBottom:20, marginTop:20}}
                 mode="contained"
                 color="rgb(202, 197, 197)"
@@ -226,6 +230,7 @@ const AllVolunteers = ({ route, navigation }) => {
                 onPress={handleClickSort}
               >
                 <Text style={{ fontSize: 20 }}> מיין</Text>
+                <FontAwesome name="sort" size={20} color="black" />
               </Button>
         </View>
         {all_volunteers.map((item, key) => {
@@ -253,6 +258,7 @@ const AllVolunteers = ({ route, navigation }) => {
                 }
               >
                 <Text style={{ fontSize: 20 }}> מחיקה</Text>
+                <AntDesign name="deleteuser" size={20} color="black" />
               </Button>
               <Button
                 style={{ alignSelf:"center",width: "70%" ,marginBottom:20}}
@@ -263,6 +269,7 @@ const AllVolunteers = ({ route, navigation }) => {
                 }
               >
                 <Text style={{ fontSize: 20 }}> עריכה</Text>
+                <AntDesign name="edit" size={20} color="black" />
               </Button>
             </View>
           );
