@@ -23,7 +23,7 @@ const AddVolunteer = ({ route, navigation }) => {
           lastName: lastName,
           city: city,
           phone: phone,
-          helpType: helpType,
+          helpType: helpType.value,
           calendlyLink:calendlyLink,
         })
         .then(() => { 
