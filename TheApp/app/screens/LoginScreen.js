@@ -19,25 +19,24 @@ import { useFonts } from "expo-font";
 import { TextInput } from "react-native-paper";
 
 import { useEffect } from "react/cjs/react.production.min";
-import {auth} from "../api/firebase"
-import { AntDesign } from '@expo/vector-icons'; 
+import { auth } from "../api/firebase";
+import { AntDesign } from "@expo/vector-icons";
 
 //Login screen and functions
 const LoginScreen = ({ navigation }) => {
   const [nameText, setNameText] = React.useState("");
   const [emailText, setEmailText] = React.useState("");
   const [password, setPassword] = React.useState("1234");
-  const[errorEmail,setErrorEmail]=React.useState("");
-  const[errorName,setErrorName]=React.useState("");
-  const[validEmail,setValidEmail]=React.useState(false);
-  const[validName,setValidName]=React.useState(false);
+  const [errorEmail, setErrorEmail] = React.useState("");
+  const [errorName, setErrorName] = React.useState("");
+  const [validEmail, setValidEmail] = React.useState(false);
+  const [validName, setValidName] = React.useState(false);
 
+  let [fontsLoaded] = useFonts({
+    "Inter-SemiBoldItalic":
+      "https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12",
+  });
 
- 
-    let [fontsLoaded] = useFonts({
-      'Inter-SemiBoldItalic': 'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',
-    });
-  
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/500.ttf"),
   });
@@ -48,186 +47,223 @@ const LoginScreen = ({ navigation }) => {
 
   //Check if the validation functions were ok, if so go to the next page.
   function handleClickEnter() {
-     
-      if(validEmail==true && validName==true)
-      {
-        //navigate into ChooseHelp screen
+    if (validEmail == true && validName == true) {
+      //navigate into ChooseHelp screen
       navigation.navigate("ChooseHelp", {
         userName: nameText,
         userEmail: emailText,
       });
-      }
-      else // in case the validation fail we pop up alert
-      {
-        Alert.alert("שגיאה","אנא הזן שם ואימייל תקניים",[{text:"אישור"}])
-      }
-    
+    } // in case the validation fail we pop up alert
+    else {
+      Alert.alert("שגיאה", "אנא הזן שם ואימייל תקניים", [{ text: "אישור" }]);
+    }
   }
 
   //check for valid mail
-  function emailValidation()
-  {
+  function emailValidation() {
     let re = /\S+@\S+\.\S+/;
-    if (re.test(emailText)==false)
-    {
+    if (re.test(emailText) == false) {
       setErrorEmail("אנא הזן אימייל תקין");
       setValidEmail(false);
-    }
-    else
-    {
+    } else {
       setErrorEmail("");
       setValidEmail(true);
-    }  
+    }
   }
 
   //check for valid name
-  function nameValidation()
-  {
-    if (nameText == password) 
-    {
+  function nameValidation() {
+    if (nameText == password) {
       navigation.navigate("AdminAuth");
+    } else {
+      let re = /^[\u0590-\u05FF]*$/;
+      if (re.test(nameText) == false) {
+        setErrorName("שם לא תקין (אנא הזן שם בעברית)");
+        setValidName(false);
+      } else {
+        setErrorName("");
+        setValidName(true);
+      }
     }
-    else{
-    let re = /^[\u0590-\u05FF]*$/;
-    if(re.test(nameText)==false)
-    {
-      setErrorName("שם לא תקין (אנא הזן שם בעברית)");
-      setValidName(false);
-    }
-    else
-    {
-      setErrorName("");
-      setValidName(true);
-    }  
   }
-  }
-///////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
   return (
     <SafeAreaView style={styles.container}>
-
-      
-      <View style={{flex:1 , alignItems:"stretch" , alignContent:"center"}}>
-             <Button
-              style={{marginTop: 20,
-                width: 120,
-                height: 60,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 100,
-                backgroundColor: '#aaa',
-                elevation: 10, 
-                borderColor: 'red',
-                borderWidth: 3,
-                marginLeft: 5,
-              }}
-              mode="contained"
-              color="red"
-              compact="true"
-              onPress={() => {
-                Linking.openURL(
-                  "https://chat.whatsapp.com/G2mKnKskYP556onqPdynTc"
-                );
-              }}
-            >
-              <Text style={{ fontSize: 22,
-                            lineHeight: 21,
-                            fontWeight: 'bold',
-                            letterSpacing: 0.25,
-                            color: 'white',fontFamily: "Montserrat" }}>
-                עזרה דחופה
-                <AntDesign name="phone" size={20} color="white" />
-              </Text>
-              
-            </Button>
-            <Image style={{
-                           marginTop: 20,
-                           borderRadius: 110,
-                           width: 80,
-                           height: 80,
-                           position: 'absolute', 
-                           right: 0,
-                          }} 
-                source={require('../assets/BatKol.jpg')} />
-            </View>
-            <View >
-        <Text style={{fontSize: 80, textAlign:"center",
-        fontFamily:"Comic Sans MS", textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: {width: -1, height: 0},
-        textShadowRadius: 15,color: "rgb(202, 197, 197)", 
-        textShadowColor: 'black', fontWeight: '600',shadowOpacity: 0.2,
-        letterSpacing:4, marginBottom: 30}}
+      <View
+        style={{
+          flex: 1,
+          alignItems: "stretch",
+          alignContent: "center",
+          flexDirection: "row",
+        }}
+      >
+        <Button
+          style={{
+            marginTop: 20,
+            width: 120,
+            height: 60,
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 100,
+            backgroundColor: "#800000",
+            elevation: 0,
+            borderColor: "#aaa",
+            borderWidth: 3,
+            marginLeft: 5,
+            position: "absolute",
+            right: 0,
+          }}
+          mode="contained"
+          color="red"
+          compact="true"
+          onPress={() => {
+            Linking.openURL("https://chat.whatsapp.com/G2mKnKskYP556onqPdynTc");
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              lineHeight: 21,
+              fontWeight: "bold",
+              letterSpacing: 0.25,
+              color: "white",
+              fontFamily: "Montserrat",
+            }}
+          >
+            עזרה דחופה
+          </Text>
+          <AntDesign name="phone" size={20} color="white" />
+        </Button>
+        <Image
+          style={{
+            marginTop: 10,
+            borderRadius: 110,
+            width: 80,
+            height: 80,
+            position: "relative",
+            right: 0,
+            justifyContent: "flex-end",
+          }}
+          source={require("../assets/BatKol.jpg")}
+        />
+      </View>
+      <View style={{ margin: 25 }}>
+        <Text
+          style={{
+            fontSize: 80,
+            textAlign: "center",
+            fontFamily: "Comic Sans MS",
+            textShadowColor: "rgba(0, 0, 0, 0.75)",
+            textShadowOffset: { width: -1, height: 0 },
+            textShadowRadius: 5,
+            color: "rgb(202, 197, 197)",
+            textShadowColor: "#800000",
+            fontWeight: "600",
+            shadowOpacity: 0.2,
+            letterSpacing: 2,
+            marginBottom: 30,
+          }}
         >
           GetHelp
         </Text>
       </View>
-      
-      <View style={{margin:10}}>
+
+      <View style={{ margin: 10 }}>
         <Text
           style={{
             fontFamily: "Montserrat",
             textAlign: "right",
             writingDirection: "rtl",
-            fontSize: 28,position: 'absolute', 
+            fontSize: 23,
+            position: "absolute",
             right: 0,
           }}
         >
           שם:
         </Text>
         <TextInput
-          style={{ textAlign: "right", writingDirection: "rtl",width:'90%', height: 50, }}
+          style={{
+            textAlign: "right",
+            writingDirection: "rtl",
+            width: "90%",
+            height: 40,
+          }}
           placeholder=""
           value={nameText}
           onChangeText={(text) => setNameText(text)}
           selectionColor="black"
           onEndEditing={nameValidation}
         />
-        <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorName}</Text>
-        </View>
-        <View>
+
+        <Text
+          style={{ color: "red", textAlign: "right", writingDirection: "rtl" }}
+        >
+          {errorName}
+        </Text>
+      </View>
+      <View>
         <Text
           style={{
             fontFamily: "Montserrat",
             textAlign: "right",
             writingDirection: "rtl",
-            fontSize: 28,position: 'absolute', 
+            fontSize: 23,
+            position: "absolute",
             right: 0,
           }}
         >
           אימייל:
         </Text>
         <TextInput
-          style={{ textAlign: "right", writingDirection: "rtl",
-        width:'82%', height: 50, marginLeft: 10}}
-        placeholder="address@email.com"
+          style={{
+            textAlign: "right",
+            writingDirection: "rtl",
+            width: "82%",
+            height: 40,
+            marginLeft: 10,
+          }}
+          placeholder="address@email.com"
           value={emailText}
           onChangeText={(text) => setEmailText(text)}
           selectionColor="black"
           onEndEditing={emailValidation}
         />
-        <Text style={{color:"red",textAlign: "right",writingDirection: "rtl",}}>{errorEmail}</Text>
-      
+        <Text
+          style={{ color: "red", textAlign: "right", writingDirection: "rtl" }}
+        >
+          {errorEmail}
+        </Text>
       </View>
 
       <View style={styles.space} />
       <View>
         <View style={{ height: 10 }} />
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            marginBottom: 50,
+            marginTop: -40,
+          }}
+        >
           <Button
-            style={{ width: "70%" ,marginBottom:150,elevation: 10, borderColor: 'grey',
-            borderWidth: 2,}}
+            style={{
+              width: "70%",
+              marginBottom: 170,
+              marginTop: -30,
+              elevation: 10,
+              borderColor: "#800000",
+              borderWidth: 2,
+            }}
             mode="contained"
             color="rgb(202, 197, 197)"
             compact="true"
-  
             onPress={handleClickEnter}
           >
             <Text style={{ fontFamily: "Montserrat", fontSize: 24 }}>
-            <AntDesign name="enter" size={24} color="black" />
-              {" "}
-              כניסה
+              <AntDesign name="enter" size={24} color="black" /> כניסה
             </Text>
           </Button>
-           
         </View>
       </View>
     </SafeAreaView>
@@ -242,7 +278,7 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke",
   },
   space: {
-    width: 20, 
+    width: 20,
     height: "15%",
   },
   input: {
