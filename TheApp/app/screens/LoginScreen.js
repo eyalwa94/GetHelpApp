@@ -247,14 +247,7 @@ const LoginScreen = ({ navigation }) => {
           }}
         >
           <Button
-            style={{
-              width: "70%",
-              marginBottom: 170,
-              marginTop: -30,
-              elevation: 10,
-              borderColor: "#800000",
-              borderWidth: 2,
-            }}
+            style={styles.button}
             mode="contained"
             color="rgb(202, 197, 197)"
             compact="true"
@@ -272,6 +265,14 @@ const LoginScreen = ({ navigation }) => {
 
 //Styling
 const styles = StyleSheet.create({
+  button: {
+    width: "70%",
+    marginBottom: 170,
+    marginTop: -30,
+    elevation: 10,
+    borderColor: "#800000",
+    borderWidth: 2,
+  },
   container: {
     flex: 1,
     justifyContent: "center",
