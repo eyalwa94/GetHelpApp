@@ -65,18 +65,7 @@ const AdminScreen = ({ route, navigation }) => {
         height: "30%",
       }}
     >
-      <Image
-        style={{
-          marginTop: -10,
-          marginBottom: 120,
-          borderRadius: 110,
-          width: 80,
-          height: 80,
-          alignSelf: "flex-end",
-          right: 0,
-        }}
-        source={require("../assets/BatKol.jpg")}
-      />
+      <Image style={styles.image} source={require("../assets/BatKol.jpg")} />
 
       <Button
         style={styles.Button}
@@ -129,6 +118,16 @@ const AdminScreen = ({ route, navigation }) => {
 
 //Styling the page
 const styles = StyleSheet.create({
+  image: {
+    marginTop: -10,
+    marginBottom: 120,
+    marginRight: 10,
+    borderRadius: 110,
+    width: 80,
+    height: 80,
+    alignSelf: "flex-end",
+    right: 0,
+  },
   text: {
     fontFamily: "Montserrat",
     textAlign: "right",
