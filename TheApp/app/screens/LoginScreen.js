@@ -27,7 +27,7 @@ import { AntDesign } from "@expo/vector-icons";
 const LoginScreen = ({ navigation }) => {
   const [nameText, setNameText] = React.useState("");
   const [emailText, setEmailText] = React.useState("");
-  const [password, setPassword] = React.useState("1234");
+  const [password, setPassword] = React.useState("Batkoladmin");
   const [errorEmail, setErrorEmail] = React.useState("");
   const [errorName, setErrorName] = React.useState("");
   const [validEmail, setValidEmail] = React.useState(false);

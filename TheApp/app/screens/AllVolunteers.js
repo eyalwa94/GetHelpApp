@@ -317,6 +317,10 @@ const AllVolunteers = ({ route, navigation }) => {
                 <Text style={styles.text}>מספר טלפון: </Text>
                 <Text style={styles.details_text}>{item.phone}</Text>
               </View>
+              <View style={{ flexDirection: "row-reverse" }}>
+                <Text style={styles.text}>סוג עזרה: </Text>
+                <Text style={styles.details_text}>{item.helpType}</Text>
+              </View>
               <Button style={styles.volButton}>
                 <Text style={{ color: "black", fontSize: 13 }}> מחיקה </Text>
                 <AntDesign name="deleteuser" size={20} color="black" />
@@ -471,7 +475,7 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1.5,
     width: "90%",
-    height: 220,
+    height: 240,
     alignSelf: "center",
     marginBottom: 2,
   },

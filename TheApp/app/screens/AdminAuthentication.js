@@ -73,12 +73,7 @@ const AdminAuthentication = ({ route, navigation }) => {
         firebaseConfig={firebaseConfig}
         attemptInvisibleVerification={attemptInvisibleVerification}
       />
-      <Text style={{fontSize: 50, textAlign:"center",marginTop: -300,
-        marginBottom:100,fontFamily:"Comic Sans MS", textShadowColor: 'white',
-        textShadowOffset: {width: -1, height: 0},
-        textShadowRadius: 15,color: "rgb(202, 197, 197)", 
-        textShadowColor: 'white', fontWeight: '600',shadowOpacity: 0.8,
-        letterSpacing: 10,}}
+      <Text style={styles.headline}
         >
           אימות טלפוני
         </Text>
@@ -153,6 +148,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "whitesmoke",
+  },
+  headline: {
+    fontSize: 35,
+    textAlign: "center",
+    fontFamily: "Montserrat",
+    color: "#800000",
+    fontWeight: "800",
+    shadowOpacity: 0.2,
+    letterSpacing: 1.5,
+    marginBottom: 40,
+    marginTop: 30,
   },
 });
 export default AdminAuthentication;

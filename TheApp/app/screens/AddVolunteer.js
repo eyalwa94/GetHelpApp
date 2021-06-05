@@ -47,7 +47,13 @@ const AddVolunteer = ({ route, navigation }) => {
         setPhone("");
         setHelpType("");
         setCalendlyLink("");
-        alert("done");
+        Alert.alert(
+          "הצלחה",
+          firstName +
+            " " +
+            lastName +
+            " " +
+            "התווסף לרשימת המתנדבים",)
       })
       .catch((err) => {
         alert(err);

@@ -10,7 +10,9 @@ import RNPickerSelect from 'react-native-picker-select';
 
 
 //Update page and functions
-const UpdateVolunteer = ({ route, navigation }) => {
+
+//-- UpdateVolunteer --//
+const UpdateVolunteer2 = ({ route, navigation }) => {
   const { chosen_volunteer } = route.params;
 
   const [firstName, setFirstName] = React.useState(
@@ -19,6 +21,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
   const [lastName, setLastName] = React.useState(chosen_volunteer[0].lastName);
   const [city, setCity] = React.useState(chosen_volunteer[0].city);
   const [phone, setPhone] = React.useState(chosen_volunteer[0].phone);
+  const [helpType, setHelpType] = React.useState(chosen_volunteer[0].helpType);
   const [calendlyLink, setCalendlyLink] = React.useState(
     chosen_volunteer[0].calendlyLink
   );
@@ -37,6 +40,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
             lastName: lastName,
             city: city,
             phone: phone,
+            helpType: helpType.value,
             calendlyLink: calendlyLink,
           })
           .then(() => {
@@ -44,6 +48,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
             setLastName("");
             setCity("");
             setPhone("");
+            setHelpType("");
             setCalendlyLink("");
             Alert.alert(
               "הצלחה",
@@ -81,42 +86,57 @@ const UpdateVolunteer = ({ route, navigation }) => {
   };
 
   return (
-    <ScrollView style={{ margin: 10 }} style={{ flex: 1 }}
-    contentContainerStyle={{ backgroundColor: "whitesmoke" }}>
-      <Text style={styles.headline}>עריכה</Text>
+    <ScrollView style={{ margin: 10 }}>
       <Text style={styles.text}>שם:</Text>
       <TextInput
-       style={styles.textInput}
-       mode="flat"
+        style={{ textAlign: "right", writingDirection: "rtl" }}
+        mode="outlined"
         value={firstName}
         onChangeText={(text) => setFirstName(text)}
         selectionColor="#0000FF"
       />
-      <Text style={styles.text}>שם משפחה:</Text>
+      <Text style={styles.text}>משפחה שם:</Text>
       <TextInput
-        style={styles.textInput}
-        mode="flat"
+        style={{ textAlign: "right", writingDirection: "rtl" }}
+        mode="outlined"
         value={lastName}
         onChangeText={(text) => setLastName(text)}
         selectionColor="#0000FF"
       />
       <Text style={styles.text}>עיר:</Text>
       <TextInput
-        style={styles.textInput}
-        mode="flat"
+        style={{ textAlign: "right", writingDirection: "rtl" }}
+        mode="outlined"
         value={city}
         onChangeText={(text) => setCity(text)}
         selectionColor="#0000FF"
       />
       <Text style={styles.text}>טלפון:</Text>
       <TextInput
-       style={styles.textInput}
-       mode="flat"
+        style={{ textAlign: "right", writingDirection: "rtl" }}
+        mode="outlined"
         value={phone}
         onChangeText={(text) => setPhone(text)}
         selectionColor="#0000FF"
         keyboardType="phone-pad"
       />
+      <Text style={styles.text}>סוג עזרה:</Text>
+      <RNPickerSelect 
+          placeholder={{
+            label: 'Select a type...',
+            value: null,            
+          }}
+          items={[
+            {label:"שיחה עם רב", value:"שיחה עם רב"},
+            {label:"מקום לינה", value:"מקום לינה"},
+            {label:"ארוחה חמה", value:"ארוחה חמה"},
+            {label:"שיחת עידוד", value:"שיחת עידוד"},
+
+          ]}
+          onValueChange={(value) => {setHelpType({value});}}
+          >
+          
+        </RNPickerSelect>
       {/* <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
         mode="outlined"
@@ -126,8 +146,8 @@ const UpdateVolunteer = ({ route, navigation }) => {
       /> */}
       <Text style={styles.text}>קישור לקלנדלי:</Text>
       <TextInput
-       style={styles.textInput}
-       mode="flat"
+        style={{ textAlign: "right", writingDirection: "rtl" }}
+        mode="outlined"
         value={calendlyLink}
         onChangeText={(text) => setCalendlyLink(text)}
         selectionColor="#0000FF"
@@ -141,7 +161,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
         }}
       >
         <Button
-          style={styles.button}
+          style={{ width: "50%", marginEnd: 5 }}
           mode="contained"
           color="green"
           compact="true"
@@ -167,44 +187,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "right",
     writingDirection: "rtl",
-    fontFamily: "Montserrat",
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "black",
-    marginBottom: 3,
-    margin: 5
-  },
-  headline: {
-    fontSize: 35,
-    textAlign: "center",
-    fontFamily: "Montserrat",
-    color: "#800000",
-    fontWeight: "800",
-    shadowOpacity: 0.2,
-    letterSpacing: 1.5,
-    marginBottom: 40,
-    marginTop: 30,
-  },
-  textInput: {
-    textAlign: "right",
-    writingDirection: "rtl",
-    marginBottom: 12,
-    height: 40,
-    width: "95%",
-    marginLeft: 15,
-  },
-  button: {
-    alignSelf: "center",
-    fontSize: 20,
-    width: "70%",
-    marginBottom: 20,
-    marginTop: 30,
-    elevation: 10,
-    borderColor: "#800000",
-    borderWidth: 2,
-    marginEnd: 5,
-    backgroundColor: "rgb(202, 197, 197)",
   },
 });
 
-export default UpdateVolunteer;
+export default UpdateVolunteer2;
