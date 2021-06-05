@@ -6,6 +6,8 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, Alert, Modal } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
+import RNPickerSelect from 'react-native-picker-select';
+
 
 //Update page and functions
 const UpdateVolunteer = ({ route, navigation }) => {
@@ -36,7 +38,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
             lastName: lastName,
             city: city,
             phone: phone,
-            helpType: helpType,
+            helpType: helpType.value,
             calendlyLink: calendlyLink,
           })
           .then(() => {
@@ -117,13 +119,29 @@ const UpdateVolunteer = ({ route, navigation }) => {
         keyboardType="phone-pad"
       />
       <Text style={styles.text}>סוג עזרה:</Text>
-      <TextInput
+      <RNPickerSelect 
+          placeholder={{
+            label: 'Select a type...',
+            value: null,            
+          }}
+          items={[
+            {label:"שיחה עם רב", value:"שיחה עם רב"},
+            {label:"מקום לינה", value:"מקום לינה"},
+            {label:"ארוחה חמה", value:"ארוחה חמה"},
+            {label:"שיחת עידוד", value:"שיחת עידוד"},
+
+          ]}
+          onValueChange={(value) => {setHelpType({value});}}
+          >
+          
+        </RNPickerSelect>
+      {/* <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}
         mode="outlined"
         value={helpType}
         onChangeText={(text) => setHelpType(text)}
         selectionColor="#0000FF"
-      />
+      /> */}
       <Text style={styles.text}>קישור לקלנדלי:</Text>
       <TextInput
         style={{ textAlign: "right", writingDirection: "rtl" }}

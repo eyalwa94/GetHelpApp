@@ -58,17 +58,25 @@ const AddVolunteer = ({ route, navigation }) => {
         marginRight: 15,
       }}
     >
-      <Image
-        style={{
-          marginBottom: 20,
-          borderRadius: 110,
-          width: 80,
-          height: 80,
-          alignSelf: "flex-end",
-          right: 0,
-        }}
-        source={require("../assets/BatKol.jpg")}
-      />
+      <View style={{ margin: 25, flexDirection: "row" }}>
+        <Image style={styles.image} source={require("../assets/BatKol.jpg")} />
+        <Text
+          style={{
+            fontSize: 35,
+            textAlign: "center",
+            fontFamily: "Montserrat",
+            color: "#800000",
+            fontWeight: "800",
+            shadowOpacity: 0.2,
+            letterSpacing: 2,
+            marginBottom: 30,
+            marginLeft: 50,
+          }}
+        >
+          הוספת מתנדב
+        </Text>
+      </View>
+
       <Text style={styles.text}>שם:</Text>
       <TextInput
         style={styles.textInput}
@@ -161,6 +169,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "whitesmoke",
+  },
+  image: {
+    marginTop: -25,
+    marginBottom: -10,
+    marginRight: -25,
+    borderRadius: 110,
+    width: 80,
+    height: 80,
+    alignSelf: "flex-start",
+    right: 0,
+    position: "absolute",
   },
   space: {
     width: 20,
