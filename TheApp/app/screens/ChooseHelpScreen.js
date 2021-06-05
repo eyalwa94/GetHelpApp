@@ -55,15 +55,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text
-        style={{
-          textAlign: "right",
-          writingDirection: "rtl",
-          fontFamily: "Montserrat",
-          fontSize: 30,
-          flexDirection: "row-reverse",
-          marginLeft: "5%",
-          marginTop: "10%",
-        }}
+      style={styles.openText}
       >
         שלום {userName}, {"\n"}בחרי את סוג העזרה לה את זקוקה :
       </Text>
@@ -74,9 +66,9 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           mode="contained"
           color="rgb(202, 197, 197)"
           compact="true"
-          onPress={() => handleClick("רב")}
+          onPress={() => handleClick("שיחה עם רב")}
         >
-          <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
+          <Text style={styles.text}>
             {" "}
             שיחה עם רב
             <AntDesign name="phone" size={24} color="black" />
@@ -90,7 +82,7 @@ const ChooseHelpScreen = ({ route, navigation }) => {
           compact="true"
           onPress={() => handleClick("מקום לינה")}
         >
-          <Text style={{ fontFamily: "Montserrat", fontSize: 30 }}>
+          <Text style={styles.text}>
             {" "}
             מקום לינה
             <AntDesign name="home" size={24} color="black" />
@@ -138,8 +130,17 @@ const styles = StyleSheet.create({
   },
   text:{
     fontFamily: "Montserrat",
-     fontSize: 30
+     fontSize: 20
   },
+  openText:{
+          textAlign: "right",
+          writingDirection: "rtl",
+          fontFamily: "Montserrat",
+          fontSize: 25,
+          flexDirection: "row-reverse",
+          marginLeft: "5%",
+          marginTop: "10%",
+        },
   button : {
   marginTop: 20,
   width: "70%",    height: 60,
