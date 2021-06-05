@@ -21,10 +21,11 @@ const AddVolunteer = ({ route, navigation }) => {
   const [phone, setPhone] = React.useState("");
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
-
-  const [moreInfo,setMoreInfo] = React.useState("");
-
+  const [moreInfo,setMoreInfo] = React.useState("אין כרגע מידע");
   
+  const [errorInfo, setErrorInfo] = React.useState("");
+  const [validInfo, setValidInfo] = React.useState(false);
+
   const [errorLastName, setErrorLastName] = React.useState("");
   const [validLastName, setValidLastName] = React.useState(false);
 
@@ -46,6 +47,7 @@ const AddVolunteer = ({ route, navigation }) => {
         phone: phone,
         helpType: helpType.value,
         calendlyLink: calendlyLink,
+        moreInfo: moreInfo,
       })
       .then(() => {
         setFirstName("");
@@ -54,6 +56,7 @@ const AddVolunteer = ({ route, navigation }) => {
         setPhone("");
         setHelpType("");
         setCalendlyLink("");
+        setMoreInfo("");
         Alert.alert(
           "הצלחה",
           firstName +
@@ -80,6 +83,18 @@ const AddVolunteer = ({ route, navigation }) => {
       }
     }
   
+    function moreInfoValidation() {
+      if(moreInfo.length > 99)
+      {
+        setErrorInfo("מספר התווים המקסימלי הוא 100");
+        setValidInfo(false);
+      }
+      else
+      {
+        setErrorInfo("");
+        setValidInfo(true);
+      }
+    }
     //check for valid name
     function nameValidation() {
      
@@ -215,6 +230,29 @@ const AddVolunteer = ({ route, navigation }) => {
         value={calendlyLink}
         onChangeText={(text) => setCalendlyLink(text)}
       />
+
+<Text style={styles.text}>מידע נוסף:</Text>
+      <TextInput
+        placeholder=""
+        style={styles.textInput}
+        mode="flat"
+        multiline = {true}
+        numberOfLines = {3}
+        value={moreInfo}
+        onChangeText={(text) => setMoreInfo(text)}
+        onEndEditing={moreInfoValidation}
+      />
+
+      <Text
+            style={{
+              color: "red",
+              textAlign: "right",
+              writingDirection: "rtl",
+            }}
+          >
+            {errorInfo}
+      </Text>
+
       <View
         style={{
           flexDirection: "row",

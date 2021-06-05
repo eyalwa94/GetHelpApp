@@ -248,6 +248,8 @@ const AllVolunteers = ({ route, navigation }) => {
                 <Text style={styles.text}>עיר: {item.city}</Text>
                 <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
                 <Text style={styles.text}>סוג עזרה: {item.helpType}</Text>
+                <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
+                <Text>{"\n"}</Text>
                 <Button
                   style={styles.volButtonPrimary}
                   mode="contained"
@@ -270,7 +272,7 @@ const AllVolunteers = ({ route, navigation }) => {
                   <Text style={{ fontSize: 13 }}> עריכה </Text>
                   <AntDesign name="edit" size={20} color="black" />
                 </Button>
-              </View>
+                </View>
             );
           })}
         </ScrollView>
@@ -287,7 +289,7 @@ const AllVolunteers = ({ route, navigation }) => {
   else {
     return (
       <ScrollView
-        style={styles.container}
+        style={styles.volView}
         contentContainerStyle={{ backgroundColor: "whitesmoke" }}
       >
         <Button
@@ -321,10 +323,23 @@ const AllVolunteers = ({ route, navigation }) => {
                 <Text style={styles.text}>סוג עזרה: </Text>
                 <Text style={styles.details_text}>{item.helpType}</Text>
               </View>
-              <Button style={styles.volButton}>
-                <Text style={{ color: "black", fontSize: 13 }}> מחיקה </Text>
-                <AntDesign name="deleteuser" size={20} color="black" />
-              </Button>
+
+              <View style={{ flexDirection: "row-reverse" }}>
+              <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
+              </View>
+              
+              
+              <Button
+                  style={styles.volButton}
+                  mode="contained"
+                  color="rgb(202, 197, 197)"
+                  onPress={() =>
+                    handleClickDelete(item.firstName, item.lastName, key)
+                  }
+                >
+                  <Text style={{ fontSize: 13 }}> מחיקה </Text>
+                  <AntDesign name="deleteuser" size={20} color="black" />
+                </Button>
               <Button
                 style={styles.volButton}
                 mode="contained"
@@ -370,6 +385,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginEnd: 5,
     backgroundColor: "rgb(202, 197, 197)",
+    
   },
   volButton: {
     alignSelf: "flex-start",
@@ -384,7 +400,7 @@ const styles = StyleSheet.create({
   volButtonPrimary: {
     alignSelf: "flex-start",
     width: "30%",
-    marginBottom: 16,
+    marginBottom: 20,
     marginTop: -13,
     marginLeft: 10,
     borderColor: "#800000",
@@ -403,6 +419,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     justifyContent: "flex-start",
     right: 0,
+    flex: 1,
   },
   headline: {
     fontSize: 35,
@@ -434,7 +451,6 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke",
     width: "100%",
     height: 450,
-    marginBottom: 50,
   },
   sortHeadline: {
     fontSize: 25,
@@ -475,7 +491,7 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1.5,
     width: "90%",
-    height: 240,
+    height: 350,
     alignSelf: "center",
     marginBottom: 2,
   },

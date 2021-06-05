@@ -19,6 +19,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
   const [lastName, setLastName] = React.useState(chosen_volunteer[0].lastName);
   const [city, setCity] = React.useState(chosen_volunteer[0].city);
   const [phone, setPhone] = React.useState(chosen_volunteer[0].phone);
+  const [moreInfo,setMoreInfo] = React.useState(chosen_volunteer[0].moreInfo);
   const [calendlyLink, setCalendlyLink] = React.useState(
     chosen_volunteer[0].calendlyLink
   );
@@ -38,6 +39,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
             city: city,
             phone: phone,
             calendlyLink: calendlyLink,
+            moreInfo: moreInfo,
           })
           .then(() => {
             setFirstName("");
@@ -45,6 +47,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
             setCity("");
             setPhone("");
             setCalendlyLink("");
+            setMoreInfo("");
             Alert.alert(
               "הצלחה",
               chosen_volunteer[0].firstName +
@@ -130,6 +133,14 @@ const UpdateVolunteer = ({ route, navigation }) => {
        mode="flat"
         value={calendlyLink}
         onChangeText={(text) => setCalendlyLink(text)}
+        selectionColor="#0000FF"
+      />
+      <Text style={styles.text}>מידע נוסף:</Text>
+      <TextInput
+       style={styles.textInput}
+       mode="flat"
+        value={moreInfo}
+        onChangeText={(text) => setMoreInfo(text)}
         selectionColor="#0000FF"
       />
       <View
