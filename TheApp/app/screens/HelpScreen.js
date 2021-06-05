@@ -20,7 +20,7 @@ const HelpScreen = ({ route, navigation }) => {
 
   if (all_volunteers.length != 0) {
     // if there are volunteers
-    if (all_volunteers[0].helpType == "רב") {
+    if (all_volunteers[0].helpType == "שיחה עם רב") {
       // if the chosen help is Rabbi
       return (
         <View style={{ justifyContesnt: "center", alignItems: "center" }}>
