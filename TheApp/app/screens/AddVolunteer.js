@@ -22,6 +22,12 @@ const AddVolunteer = ({ route, navigation }) => {
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
 
+  const [errorName, setErrorName] = React.useState("");
+  const [validEmail, setValidEmail] = React.useState(false);
+  const [validName, setValidName] = React.useState(false);
+  const [validLastName, setValidLastName] = React.useState(false);
+  
+
   //Add new volunteer to firebase
   handleClickSend = () => {
     firestore()
@@ -47,6 +53,47 @@ const AddVolunteer = ({ route, navigation }) => {
         alert(err);
       });
   };
+
+  //validations
+    //check for valid mail
+    function emailValidation() {
+      let re = /\S+@\S+\.\S+/;
+      if (re.test(emailText) == false) {
+        setErrorEmail("אנא הזן אימייל תקין");
+        setValidEmail(false);
+      } else {
+        setErrorEmail("");
+        setValidEmail(true);
+      }
+    }
+  
+    //check for valid name
+    function nameValidation() {
+     
+        let re = /^[\u0590-\u05FF]*$/;
+        if (re.test(firstName) == false) {
+          setErrorName("שם לא תקין (אנא הזן שם בעברית)");
+          setValidName(false);
+        } else {
+          setErrorName("");
+          setValidName(true);
+        }
+    }
+
+    //check for valid last name
+    function lastNameValidation() {
+       {
+        let re = /^[\u0590-\u05FF]*$/;
+        if (re.test(lastName) == false) {
+          setErrorName("שם משפחה לא תקין (אנא הזן שם משפחה בעברית)");
+          setValidName(false);
+        } else {
+          setErrorName("");
+          setValidLastName(true);
+        }
+      }
+    }
+
 
   // Page view , Init data into the variables
   //Including all paramteres that needed to the firebase.
@@ -83,14 +130,35 @@ const AddVolunteer = ({ route, navigation }) => {
         mode="flat"
         value={firstName}
         onChangeText={(text) => setFirstName(text)}
+        onEndEditing={nameValidation}
       />
+      <Text
+            style={{
+              color: "red",
+              textAlign: "right",
+              writingDirection: "rtl",
+            }}
+          >
+            {errorName}
+      </Text>
+
       <Text style={styles.text}>משפחה שם:</Text>
       <TextInput
         style={styles.textInput}
         mode="flat"
         value={lastName}
         onChangeText={(text) => setLastName(text)}
+        onEndEditing={lastNameValidation}
       />
+      <Text
+            style={{
+              color: "red",
+              textAlign: "right",
+              writingDirection: "rtl",
+            }}
+          >
+            {errorName}
+      </Text>
       <Text style={styles.text}>עיר:</Text>
       <TextInput
         style={styles.textInput}
