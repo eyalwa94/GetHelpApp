@@ -22,10 +22,17 @@ const AddVolunteer = ({ route, navigation }) => {
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
 
-  const [errorName, setErrorName] = React.useState("");
-  const [validEmail, setValidEmail] = React.useState(false);
-  const [validName, setValidName] = React.useState(false);
+  const [moreInfo,setMoreInfo] = React.useState("");
+
+  
+  const [errorLastName, setErrorLastName] = React.useState("");
   const [validLastName, setValidLastName] = React.useState(false);
+
+  const [validEmail, setValidEmail] = React.useState(false);
+
+  const [errorName, setErrorName] = React.useState("");
+  const [validName, setValidName] = React.useState(false);
+ 
   
 
   //Add new volunteer to firebase
@@ -91,10 +98,10 @@ const AddVolunteer = ({ route, navigation }) => {
        {
         let re = /^[\u0590-\u05FF]*$/;
         if (re.test(lastName) == false) {
-          setErrorName("שם משפחה לא תקין (אנא הזן שם משפחה בעברית)");
+          setErrorLastName("שם משפחה לא תקין (אנא הזן שם משפחה בעברית)");
           setValidName(false);
         } else {
-          setErrorName("");
+          setErrorLastName("");
           setValidLastName(true);
         }
       }
@@ -163,8 +170,9 @@ const AddVolunteer = ({ route, navigation }) => {
               writingDirection: "rtl",
             }}
           >
-            {errorName}
+            {errorLastName}
       </Text>
+
       <Text style={styles.text}>עיר:</Text>
       <TextInput
         style={styles.textInput}
