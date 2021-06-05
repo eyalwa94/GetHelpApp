@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Linking,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import { Button } from "react-native-paper";
 import { firestore } from "../api/firebase";
@@ -23,7 +24,7 @@ const HelpScreen = ({ route, navigation }) => {
     if (all_volunteers[0].helpType == "שיחה עם רב") {
       // if the chosen help is Rabbi
       return (
-        <View style={{ justifyContesnt: "center", alignItems: "center" }}>
+        <ScrollView style={{ justifyContesnt: "center"}} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
           <Text style={styles.title}>{all_volunteers[0].helpType}</Text>
           {all_volunteers.map((item, key) => {
             return (
@@ -34,7 +35,7 @@ const HelpScreen = ({ route, navigation }) => {
                   borderColor: "gray",
                   borderWidth: 3,
                   width: "90%",
-                  height: 200,
+                  height: 300,
                 }}
               >
                 <View style={{ flexDirection: "row-reverse" }}>
@@ -53,6 +54,9 @@ const HelpScreen = ({ route, navigation }) => {
                   <Text style={styles.text}>מספר טלפון: </Text>
                   <Text style={styles.details_text}>{item.phone}</Text>
                 </View>
+                <View style={{ flexDirection: "row-reverse" }}>
+                  <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
+                </View>
                 <Button
                   style={styles.Button}
                   onPress={() => Linking.openURL(item.calendlyLink)}
@@ -62,7 +66,7 @@ const HelpScreen = ({ route, navigation }) => {
               </View>
             );
           })}
-        </View>
+        </ScrollView>
       );
     } // Any other help
     else {
@@ -82,7 +86,7 @@ const HelpScreen = ({ route, navigation }) => {
                   borderColor: "gray",
                   borderWidth: 3,
                   width: "90%",
-                  height: 200,
+                  height: 300,
                 }}
               >
                 <View style={{ flexDirection: "row-reverse" }}>
@@ -100,6 +104,9 @@ const HelpScreen = ({ route, navigation }) => {
                 <View style={{ flexDirection: "row-reverse" }}>
                   <Text style={styles.text}>מספר טלפון: </Text>
                   <Text style={styles.details_text}>{item.phone}</Text>
+                </View>
+                <View style={{ flexDirection: "row-reverse" }}>
+                  <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
                 </View>
                 <Button
                   style={styles.Button}
@@ -149,6 +156,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     justifyContent: "flex-end",
     right: 0,
+    flex: 1,
   },
   Button: {
     fontSize: 20,
@@ -162,6 +170,9 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(202, 197, 197)",
     alignSelf: "flex-start",
     marginLeft: 10,
+    position: "absolute",
+    left:    0,
+    bottom:   0,
   },
   empty_page: {
     flex: 1,
