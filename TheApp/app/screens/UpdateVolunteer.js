@@ -147,7 +147,7 @@ const UpdateVolunteer = ({ route, navigation }) => {
           compact="true"
           onPress={handleClickUpdate1}
         >
-          <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}> עריכה</Text>
+          <Text style={styles.text}> עריכה</Text>
         </Button>
       </View>
     </ScrollView>
