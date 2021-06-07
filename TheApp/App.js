@@ -38,15 +38,22 @@ const MyStack = () => {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
-          options={{ title: 'Login',headerStyle:{backgroundColor:"whitesmoke"} }}
+          options={{ title: 'כניסה',headerStyle:{backgroundColor:"whitesmoke"} }}
         />
-        <Stack.Screen name="ChooseHelp" component={ChooseHelpScreen} />
-        <Stack.Screen name="Help" component={HelpScreen} />
-        <Stack.Screen name="AdminAuth" component={user ? AdminScreen : AdminAuthentication} />
-        <Stack.Screen name="AllVol" component={AllVolunteers} />
-        <Stack.Screen name="AddVol" component={AddVolunteer} />
-        <Stack.Screen name="UpdateVol" component={UpdateVolunteer} />
-        <Stack.Screen name="AllUsers" component={AllUsers} />
+        <Stack.Screen name="ChooseHelp" component={ChooseHelpScreen} 
+        options={{ title: 'בחירת עזרה',headerStyle:{backgroundColor:"whitesmoke"} }}/>
+        <Stack.Screen name="Help" component={HelpScreen} 
+        options={{ title: 'קביעת פגישה',headerStyle:{backgroundColor:"whitesmoke"} }}/>
+        <Stack.Screen name="AdminAuth" component={user ? AdminScreen : AdminAuthentication}
+        options={{ title: 'מנהל',headerStyle:{backgroundColor:"whitesmoke"} }} />
+        <Stack.Screen name="AllVol" component={AllVolunteers} 
+        options={{ title: 'רשימת המתנדבים',headerStyle:{backgroundColor:"whitesmoke"} }}/>
+        <Stack.Screen name="AddVol" component={AddVolunteer} 
+        options={{ title: 'הוספת מתנדב',headerStyle:{backgroundColor:"whitesmoke"} }}/>
+        <Stack.Screen name="UpdateVol" component={UpdateVolunteer} 
+        options={{ title: 'עדכון מתנדב',headerStyle:{backgroundColor:"whitesmoke"} }}/>
+        <Stack.Screen name="AllUsers" component={AllUsers} 
+        options={{ title: 'סטטיסטיקות',headerStyle:{backgroundColor:"whitesmoke"} }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
