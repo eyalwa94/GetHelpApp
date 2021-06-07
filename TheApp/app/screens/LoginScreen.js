@@ -18,6 +18,7 @@ import {
 import { Button } from "react-native-paper";
 import { useFonts } from "expo-font";
 import { TextInput } from "react-native-paper";
+import { firestore } from "../api/firebase";
 
 import { useEffect } from "react/cjs/react.production.min";
 import { auth } from "../api/firebase";
@@ -32,6 +33,8 @@ const LoginScreen = ({ navigation }) => {
   const [errorName, setErrorName] = React.useState("");
   const [validEmail, setValidEmail] = React.useState(false);
   const [validName, setValidName] = React.useState(false);
+
+  let wanted_user;
 
   let [fontsLoaded] = useFonts({
     "Inter-SemiBoldItalic":
@@ -50,15 +53,75 @@ const LoginScreen = ({ navigation }) => {
   function handleClickEnter() {
     if (validEmail == true && validName == true) {
       //navigate into ChooseHelp screen
-      navigation.navigate("ChooseHelp", {
-        userName: nameText,
-        userEmail: emailText,
-      });
+      firestore()
+      .collection("Users")
+      .where("name", "==", nameText)
+      .where("email", "==", emailText)
+      .get()
+      .then((snapshot) => {
+        if(snapshot.docs.length === 0)
+        {
+          firestore()
+          .collection("Users")
+          .add({
+            name: nameText,
+            email: emailText,
+            helpSearched: "לא נבחרה עזרה",
+            counter: 1,
+            dateMade: getCurrentDate()
+          })
+          navigation.navigate("ChooseHelp", {
+            userName: nameText,
+            userEmail: emailText,
+          });
+        }
+        else{
+          wanted_user=[];
+          firestore()
+          .collection("Users")
+          .where("name", "==", nameText)
+          .where("email", "==", emailText)
+          .get()
+          .then((snapshot) => {
+            snapshot.forEach((user) => {
+              wanted_user.push(user.data());
+          });
+          }).then(() => {
+
+            let doc_to_update_query = firestore()
+            .collection("Users")
+            .where("name", "==", nameText)
+            .where("email", "==", emailText);
+          doc_to_update_query.get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              doc.ref
+                .update({
+                  counter: parseInt(wanted_user[0].counter)+1
+                });});});
+            //console.log(parseInt(wanted_user[0].counter)+1);
+            navigation.navigate("ChooseHelp", {
+              userName: nameText,
+              userEmail: emailText,
+            });
+          })
+        }
+        });
     } // in case the validation fail we pop up alert
     else {
       Alert.alert("שגיאה", "אנא הזן שם ואימייל תקניים", [{ text: "אישור" }]);
     }
   }
+
+  const getCurrentDate=()=>{
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+
+    //Alert.alert(date + '-' + month + '-' + year);
+    // You can turn it in to your desired format
+    return date + '-' + month + '-' + year;//format: dd-mm-yyyy;
+}
+
 
   //check for valid mail
   function emailValidation() {

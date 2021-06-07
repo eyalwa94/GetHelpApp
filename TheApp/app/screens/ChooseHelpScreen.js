@@ -28,6 +28,16 @@ const ChooseHelpScreen = ({ route, navigation }) => {
 //Moving to the chosen help page , including taking volunteers from the firebase.
   function handleClick(route) // Gets all the volunteers into array, send it to the help screen
    {
+    let doc_to_update_query = firestore()
+    .collection("Users")
+    .where("name", "==", userName)
+    .where("email", "==", userEmail);
+  doc_to_update_query.get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+      doc.ref
+        .update({
+          helpSearched: route
+        });});});
     all_volunteers=[];
     firestore()
     .collection("Volunteers")
