@@ -19,6 +19,7 @@ import {
   Feather,
   FontAwesome,
   MaterialIcons,
+  Entypo,
 } from "@expo/vector-icons";
 
 //Admin page and his functions
@@ -30,6 +31,7 @@ const AdminScreen = ({ route, navigation }) => {
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
   let all_volunteers = [];
+  let all_users = [];
 
   //Show all volunteers function
   handleClickShowAll = () => {
@@ -54,6 +56,52 @@ const AdminScreen = ({ route, navigation }) => {
   handleClickAddUser = () => {
     navigation.navigate("AddVol");
   };
+
+  //Show statisics
+  handleClickShowStatistic = () => {
+    all_users = [];
+    firestore()
+      .collection("Users")
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((user) => {
+          all_users.push(user.data());
+        });
+      })
+      .then(() => {
+        all_users.forEach((user, index) => {
+          if (user.dateMade < getCurrentDate()) {
+            let doc_to_del_query = firestore()
+              .collection("Users")
+              .where("name", "==", user.name)
+              .where("email", "==", user.email);
+            doc_to_del_query.get().then(function (querySnapshot) {
+              querySnapshot.forEach(function (doc) {
+                doc.ref.delete();
+              });
+            });
+
+            all_users.splice(index, 1);
+          }
+        });
+      })
+      .then(() => {
+        navigation.navigate("AllUsers", {
+          all_users: all_users,
+        }); // navigate to the AllUsers page, and send all_users array
+      });
+  };
+
+  const getCurrentDate = () => {
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+
+    //Alert.alert(date + '-' + month + '-' + year);
+    // You can turn it in to your desired format
+    return date + "-" + month + "-" + year; //format: dd-mm-yyyy;
+  };
+
   //navigation buttons
   return (
     <View
@@ -93,6 +141,20 @@ const AdminScreen = ({ route, navigation }) => {
           רשימת המתנדבים עריכה/מחיקה {"\t"}
         </Text>
         <Feather name="list" size={20} color="black" />
+      </Button>
+      <View style={styles.space} />
+      <Button
+        style={styles.Button}
+        mode="contained"
+        color="rgb(202, 197, 197)"
+        compact="true"
+        onPress={handleClickShowStatistic}
+      >
+        <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}>
+          {" "}
+          סטטיסטיקות {"\t"}
+        </Text>
+        <Entypo name="bar-graph" size={20} color="black" />
       </Button>
       <View style={styles.space} />
 

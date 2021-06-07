@@ -14,7 +14,7 @@ import AdminAuthentication from './app/screens/AdminAuthentication';
 import AllVolunteers from './app/screens/AllVolunteers';
 import AddVolunteer from './app/screens/AddVolunteer';
 import UpdateVolunteer from './app/screens/UpdateVolunteer';
-
+import AllUsers from './app/screens/AllUsers';
 
 
 
@@ -46,6 +46,7 @@ const MyStack = () => {
         <Stack.Screen name="AllVol" component={AllVolunteers} />
         <Stack.Screen name="AddVol" component={AddVolunteer} />
         <Stack.Screen name="UpdateVol" component={UpdateVolunteer} />
+        <Stack.Screen name="AllUsers" component={AllUsers} />
       </Stack.Navigator>
     </NavigationContainer>
   );
