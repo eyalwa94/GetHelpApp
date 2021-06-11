@@ -11,9 +11,7 @@ import Modal from "react-native-modal";
 import { AntDesign } from "@expo/vector-icons";
 import firebase from "../api/firebase";
 import { FirebaseRecaptchaVerifierModal, FirebaseRecaptchaBanner } from 'expo-firebase-recaptcha';
-//import { LogBox } from 'react-native';
 
-//LogBox.ignoreLogs(['Setting a timer']);
 //Page and functions
 const AdminAuthentication = ({ route, navigation }) => {
   const [phoneNumber, setPhoneNumber] = React.useState("");
