@@ -181,7 +181,7 @@ const AdminScreen = ({ route, navigation }) => {
 //Styling the page
 const styles = StyleSheet.create({
   image: {
-    marginTop: -10,
+    marginTop: 50,
     marginBottom: 120,
     marginRight: 10,
     borderRadius: 110,
