@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   },
   Button: {
     fontSize: 20,
-    width: "66%",
+    width: "75%",
     marginBottom: 20,
     marginTop: 30,
     elevation: 10,

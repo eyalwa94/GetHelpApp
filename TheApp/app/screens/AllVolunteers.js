@@ -205,9 +205,11 @@ const AllVolunteers = ({ route, navigation }) => {
             />
             <Text style={styles.text}>סוג עזרה:</Text>
             <RNPickerSelect
-              style={styles.textInput}
+      style={{ inputAndroid: { color: 'black' } ,viewContainer: { flex: 1, paddingLeft: "80%", }, }}
+      useNativeAndroidPickerStyle={false}
+              
               placeholder={{
-                label: "Select a type...",
+                label: "אנא בחר...",
                 value: null,
               }}
               items={[
@@ -239,7 +241,10 @@ const AllVolunteers = ({ route, navigation }) => {
               <Text style={styles.text}> מיין </Text>
               <FontAwesome name="sort" size={20} color="black" />
             </Button>
+            <View style={styles.space}></View>
+           
           </View>
+          <View style={{marginTop:20}}>
           {all_volunteers.map((item, key) => {
             return (
               <View key={key} style={styles.volArea}>
@@ -275,8 +280,10 @@ const AllVolunteers = ({ route, navigation }) => {
                 </View>
             );
           })}
+          </View>
         </ScrollView>
       );
+      
     } // in case there are no volunteers
     else {
       return (
