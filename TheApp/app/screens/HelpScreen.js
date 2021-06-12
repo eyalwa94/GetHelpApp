@@ -45,10 +45,6 @@ const HelpScreen = ({ route, navigation }) => {
                   <Text style={styles.details_text}>{item.city}</Text>
                 </View>
                 <View style={{ flexDirection: "row-reverse" }}>
-                  <Text style={styles.text}>מספר טלפון: </Text>
-                  <Text style={styles.details_text}>{item.phone}</Text>
-                </View>
-                <View style={{ flexDirection: "row-reverse" }}>
                   <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
                 </View>
                 <Button
@@ -85,10 +81,6 @@ const HelpScreen = ({ route, navigation }) => {
                 <View style={{ flexDirection: "row-reverse" }}>
                   <Text style={styles.text}>עיר: </Text>
                   <Text style={styles.details_text}>{item.city}</Text>
-                </View>
-                <View style={{ flexDirection: "row-reverse" }}>
-                  <Text style={styles.text}>מספר טלפון: </Text>
-                  <Text style={styles.details_text}>{item.phone}</Text>
                 </View>
                 <View style={{ flexDirection: "row-reverse" }}>
                   <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>

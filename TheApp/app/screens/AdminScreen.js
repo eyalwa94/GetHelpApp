@@ -73,18 +73,7 @@ const AdminScreen = ({ route, navigation }) => {
         all_users.forEach((user, index) => {
           let userDate = new Date(user.dateMade);
           let currDate = new Date(getCurrentDate());
-          /*
-          console.log(userDate);
-          console.log(currDate);
-          if(userDate>currDate)
-            console.log("biiger");
-          if(userDate<currDate)
-            console.log("smaller");
-          if(userDate==currDate)
-            console.log("same");
-          */
           if (userDate < currDate) {
-            
             let doc_to_del_query = firestore()
               .collection("Users")
               .where("name", "==", user.name)
@@ -94,12 +83,24 @@ const AdminScreen = ({ route, navigation }) => {
                 doc.ref.delete();
               });
             });
-
-            all_users.splice(index, 1);
           }
         });
       })
       .then(() => {
+        for(let i=0 ; i<all_users.length ;)
+        {
+          let userDate = new Date(all_users[i].dateMade);
+          let currDate = new Date(getCurrentDate());
+          if (userDate < currDate)
+          {
+            if(all_users.length==1)
+              all_users=[];
+            else  
+              all_users.splice(i,1);
+          }
+          else
+            i++;
+        }
         navigation.navigate("AllUsers", {
           all_users: all_users,
         }); // navigate to the AllUsers page, and send all_users array

@@ -57,7 +57,7 @@ const AllUsers = ({ route, navigation }) => {
   else {
     return (
       <View style={styles.empty_page}>
-        <Text style={styles.empty_text}>לא היו כניסות היום מ00:00</Text>
+        <Text style={styles.empty_text}> לא התבצעו כניסות היום</Text>
       </View>
     );
   }
