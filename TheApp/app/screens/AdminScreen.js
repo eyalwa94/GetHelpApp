@@ -71,7 +71,20 @@ const AdminScreen = ({ route, navigation }) => {
       })
       .then(() => {
         all_users.forEach((user, index) => {
-          if (user.dateMade < getCurrentDate()) {
+          let userDate = new Date(user.dateMade);
+          let currDate = new Date(getCurrentDate());
+          /*
+          console.log(userDate);
+          console.log(currDate);
+          if(userDate>currDate)
+            console.log("biiger");
+          if(userDate<currDate)
+            console.log("smaller");
+          if(userDate==currDate)
+            console.log("same");
+          */
+          if (userDate < currDate) {
+            
             let doc_to_del_query = firestore()
               .collection("Users")
               .where("name", "==", user.name)
