@@ -302,6 +302,7 @@ const AllVolunteers = ({ route, navigation }) => {
         <Button
           style={styles.backToListButton}
           compact="true"
+          mode="contained"
           onPress={handleClickGoBack}
         >
           <Text style={{ color: "black", fontSize: 20 }}>חזרה</Text>
@@ -502,12 +503,14 @@ const styles = StyleSheet.create({
   },
   volSortArea: {
     backgroundColor: "white",
+    flex: 1,
     borderColor: "gray",
     borderWidth: 1.5,
     width: "90%",
-    height: 280,
     alignSelf: "center",
-    marginBottom: 2,
+    marginBottom: 3,
+    marginTop: 3,
+    paddingBottom: 5,
   },
 });
 

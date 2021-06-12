@@ -28,19 +28,10 @@ const HelpScreen = ({ route, navigation }) => {
           style={{ justifyContesnt: "center" }}
           contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
         >
-          <Text style={styles.title}>{all_volunteers[0].helpType}</Text>
+          <Text style={styles.headline}>{all_volunteers[0].helpType}</Text>
           {all_volunteers.map((item, key) => {
             return (
-              <View
-                key={key}
-                style={{
-                  backgroundColor: "white",
-                  borderColor: "gray",
-                  borderWidth: 3,
-                  width: "90%",
-                  height: 300,
-                }}
-              >
+              <View key={key} style={styles.volArea}>
                 <View style={{ flexDirection: "row-reverse" }}>
                   <Text style={styles.text}>שם: </Text>
                   <Text style={styles.details_text}>{item.firstName}</Text>
@@ -61,7 +52,7 @@ const HelpScreen = ({ route, navigation }) => {
                   <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
                 </View>
                 <Button
-                  style={styles.Button}
+                  style={styles.Button1}
                   onPress={() => Linking.openURL(item.calendlyLink)}
                 >
                   <Text style={{ color: "black" }}>קביעת פגישה</Text>
@@ -82,16 +73,7 @@ const HelpScreen = ({ route, navigation }) => {
             let whatsapp_link = "https://wa.me/972" + item.phone.slice(1);
 
             return (
-              <View
-                key={key}
-                style={{
-                  backgroundColor: "white",
-                  borderColor: "gray",
-                  borderWidth: 3,
-                  width: "90%",
-                  height: 300,
-                }}
-              >
+              <View key={key} style={styles.volArea}>
                 <View style={{ flexDirection: "row-reverse" }}>
                   <Text style={styles.text}>שם: </Text>
                   <Text style={styles.details_text}>{item.firstName}</Text>
@@ -177,6 +159,22 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
   },
+  Button1: {
+    fontSize: 20,
+    width: "40%",
+    marginBottom: 20,
+    marginTop: 30,
+    elevation: 10,
+    borderColor: "#800000",
+    borderWidth: 2,
+    marginEnd: 5,
+    backgroundColor: "rgb(202, 197, 197)",
+    alignSelf: "flex-start",
+    marginLeft: 10,
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+  },
   empty_page: {
     flex: 1,
     fontFamily: "Montserrat",
@@ -205,6 +203,14 @@ const styles = StyleSheet.create({
     letterSpacing: 1.5,
     marginBottom: 30,
     marginTop: -100,
+  },
+  volArea: {
+    backgroundColor: "white",
+    borderColor: "gray",
+    borderWidth: 3,
+    width: "90%",
+    height: 240,
+    marginBottom: 3,
   },
   title: {
     fontSize: 40,
