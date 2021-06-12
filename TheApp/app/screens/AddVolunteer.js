@@ -14,8 +14,6 @@ import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
 import RNPickerSelect from "react-native-picker-select";
 
-
-
 const AddVolunteer = ({ route, navigation }) => {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -23,8 +21,8 @@ const AddVolunteer = ({ route, navigation }) => {
   const [phone, setPhone] = React.useState("");
   const [helpType, setHelpType] = React.useState("");
   const [calendlyLink, setCalendlyLink] = React.useState("");
-  const [moreInfo,setMoreInfo] = React.useState("אין כרגע מידע");
-  
+  const [moreInfo, setMoreInfo] = React.useState("אין כרגע מידע");
+
   const [errorInfo, setErrorInfo] = React.useState("");
   const [validInfo, setValidInfo] = React.useState(false);
 
@@ -35,8 +33,6 @@ const AddVolunteer = ({ route, navigation }) => {
 
   const [errorName, setErrorName] = React.useState("");
   const [validName, setValidName] = React.useState(false);
- 
-  
 
   //Add new volunteer to firebase
   handleClickSend = () => {
@@ -61,11 +57,8 @@ const AddVolunteer = ({ route, navigation }) => {
         setMoreInfo("");
         Alert.alert(
           "הצלחה",
-          firstName +
-            " " +
-            lastName +
-            " " +
-            "התווסף לרשימת המתנדבים",)
+          firstName + " " + lastName + " " + "התווסף לרשימת המתנדבים"
+        );
       })
       .catch((err) => {
         alert(err);
@@ -73,57 +66,52 @@ const AddVolunteer = ({ route, navigation }) => {
   };
 
   //validations
-    //check for valid mail
-    function emailValidation() {
-      let re = /\S+@\S+\.\S+/;
-      if (re.test(emailText) == false) {
-        setErrorEmail("אנא הזן אימייל תקין");
-        setValidEmail(false);
+  //check for valid mail
+  function emailValidation() {
+    let re = /\S+@\S+\.\S+/;
+    if (re.test(emailText) == false) {
+      setErrorEmail("אנא הזן אימייל תקין");
+      setValidEmail(false);
+    } else {
+      setErrorEmail("");
+      setValidEmail(true);
+    }
+  }
+
+  function moreInfoValidation() {
+    if (moreInfo.length > 99) {
+      setErrorInfo("מספר התווים המקסימלי הוא 100");
+      setValidInfo(false);
+    } else {
+      setErrorInfo("");
+      setValidInfo(true);
+    }
+  }
+  //check for valid name
+  function nameValidation() {
+    let re = /^[\u0590-\u05FF]*$/;
+    if (re.test(firstName) == false) {
+      setErrorName("שם לא תקין (אנא הזן שם בעברית)");
+      setValidName(false);
+    } else {
+      setErrorName("");
+      setValidName(true);
+    }
+  }
+
+  //check for valid last name
+  function lastNameValidation() {
+    {
+      let re = /^[\u0590-\u05FF]*$/;
+      if (re.test(lastName) == false) {
+        setErrorLastName("שם משפחה לא תקין (אנא הזן שם משפחה בעברית)");
+        setValidName(false);
       } else {
-        setErrorEmail("");
-        setValidEmail(true);
+        setErrorLastName("");
+        setValidLastName(true);
       }
     }
-  
-    function moreInfoValidation() {
-      if(moreInfo.length > 99)
-      {
-        setErrorInfo("מספר התווים המקסימלי הוא 100");
-        setValidInfo(false);
-      }
-      else
-      {
-        setErrorInfo("");
-        setValidInfo(true);
-      }
-    }
-    //check for valid name
-    function nameValidation() {
-     
-        let re = /^[\u0590-\u05FF]*$/;
-        if (re.test(firstName) == false) {
-          setErrorName("שם לא תקין (אנא הזן שם בעברית)");
-          setValidName(false);
-        } else {
-          setErrorName("");
-          setValidName(true);
-        }
-    }
-
-    //check for valid last name
-    function lastNameValidation() {
-       {
-        let re = /^[\u0590-\u05FF]*$/;
-        if (re.test(lastName) == false) {
-          setErrorLastName("שם משפחה לא תקין (אנא הזן שם משפחה בעברית)");
-          setValidName(false);
-        } else {
-          setErrorLastName("");
-          setValidLastName(true);
-        }
-      }
-    }
-
+  }
 
   // Page view , Init data into the variables
   //Including all paramteres that needed to the firebase.
@@ -163,13 +151,13 @@ const AddVolunteer = ({ route, navigation }) => {
         onEndEditing={nameValidation}
       />
       <Text
-            style={{
-              color: "red",
-              textAlign: "right",
-              writingDirection: "rtl",
-            }}
-          >
-            {errorName}
+        style={{
+          color: "red",
+          textAlign: "right",
+          writingDirection: "rtl",
+        }}
+      >
+        {errorName}
       </Text>
 
       <Text style={styles.text}>משפחה שם:</Text>
@@ -181,13 +169,13 @@ const AddVolunteer = ({ route, navigation }) => {
         onEndEditing={lastNameValidation}
       />
       <Text
-            style={{
-              color: "red",
-              textAlign: "right",
-              writingDirection: "rtl",
-            }}
-          >
-            {errorLastName}
+        style={{
+          color: "red",
+          textAlign: "right",
+          writingDirection: "rtl",
+        }}
+      >
+        {errorLastName}
       </Text>
 
       <Text style={styles.text}>עיר:</Text>
@@ -209,8 +197,11 @@ const AddVolunteer = ({ route, navigation }) => {
 
       <Text style={styles.text}>סוג עזרה:</Text>
       <RNPickerSelect
-      style={{ inputAndroid: { color: 'black' } ,viewContainer: { flex: 1, paddingLeft: "80%", }, }}
-      useNativeAndroidPickerStyle={false}
+        style={{
+          inputAndroid: { color: "black" },
+          viewContainer: { flex: 1, paddingLeft: "80%" },
+        }}
+        useNativeAndroidPickerStyle={false}
         placeholder={{
           label: "אנא בחר ...",
           value: null,
@@ -237,26 +228,26 @@ const AddVolunteer = ({ route, navigation }) => {
         onChangeText={(text) => setCalendlyLink(text)}
       />
 
-<Text style={styles.text}>מידע נוסף:</Text>
+      <Text style={styles.text}>מידע נוסף:</Text>
       <TextInput
         placeholder=""
         style={styles.textInput}
         mode="flat"
-        multiline = {true}
-        numberOfLines = {3}
+        multiline={true}
+        numberOfLines={3}
         value={moreInfo}
         onChangeText={(text) => setMoreInfo(text)}
         onEndEditing={moreInfoValidation}
       />
 
       <Text
-            style={{
-              color: "red",
-              textAlign: "right",
-              writingDirection: "rtl",
-            }}
-          >
-            {errorInfo}
+        style={{
+          color: "red",
+          textAlign: "right",
+          writingDirection: "rtl",
+        }}
+      >
+        {errorInfo}
       </Text>
 
       <View
@@ -285,7 +276,7 @@ const styles = StyleSheet.create({
   button: {
     width: "70%",
     marginBottom: 170,
-    marginTop: 50,
+    marginTop: 10,
     elevation: 10,
     borderColor: "#800000",
     borderWidth: 2,
