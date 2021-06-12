@@ -93,7 +93,6 @@ const AdminScreen = ({ route, navigation }) => {
           let currDate = new Date(getCurrentDate());
           if (userDate < currDate)
           {
-            console.log(all_users[i].dateMade + " " + all_users[i].name);
             if(all_users.length==1)
               all_users=[];
             else  
