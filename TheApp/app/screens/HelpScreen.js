@@ -24,7 +24,10 @@ const HelpScreen = ({ route, navigation }) => {
     if (all_volunteers[0].helpType == "שיחה עם רב") {
       // if the chosen help is Rabbi
       return (
-        <ScrollView style={{ justifyContesnt: "center"}} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
+        <ScrollView
+          style={{ justifyContesnt: "center" }}
+          contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
+        >
           <Text style={styles.title}>{all_volunteers[0].helpType}</Text>
           {all_volunteers.map((item, key) => {
             return (
@@ -160,7 +163,7 @@ const styles = StyleSheet.create({
   },
   Button: {
     fontSize: 20,
-    width: "66%",
+    width: "75%",
     marginBottom: 20,
     marginTop: 30,
     elevation: 10,
@@ -171,15 +174,15 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 10,
     position: "absolute",
-    left:    0,
-    bottom:   0,
+    left: 0,
+    bottom: 0,
   },
   empty_page: {
     flex: 1,
     fontFamily: "Montserrat",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#aaa",
+    backgroundColor: "whitesmoke",
   },
   headline: {
     fontSize: 35,
@@ -193,12 +196,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   empty_text: {
-    textAlign: "right",
+    fontSize: 35,
+    textAlign: "center",
     fontFamily: "Montserrat",
-    writingDirection: "rtl",
-    fontSize: 40,
-    justifyContent: "flex-end",
-    right: 0,
+    color: "#800000",
+    fontWeight: "800",
+    shadowOpacity: 0.2,
+    letterSpacing: 1.5,
+    marginBottom: 30,
+    marginTop: -100,
   },
   title: {
     fontSize: 40,

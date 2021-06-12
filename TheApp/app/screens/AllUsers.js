@@ -18,45 +18,41 @@ import { FontAwesome, AntDesign } from "@expo/vector-icons";
 // help screen and his redirections
 const AllUsers = ({ route, navigation }) => {
   const { all_users } = route.params;
-  let number_of_users=all_users.length;
+  let number_of_users = all_users.length;
 
   if (all_users.length != 0) {
-      return (
-        <ScrollView style={{ justifyContesnt: "center"}} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
-          <Text style={styles.title}>מספר הכניסות היום: {number_of_users}</Text>
-          {all_users.map((item, key) => {
-            return (
-              <View
-                key={key}
-                style={{
-                  backgroundColor: "white",
-                  borderColor: "gray",
-                  borderWidth: 3,
-                  width: "90%",
-                  height: 300,
-                }}
-              >
-                <View style={{ flexDirection: "row-reverse" }}>
-                  <Text style={styles.text}>שם: </Text>
-                  <Text style={styles.details_text}>{item.name}</Text>
-                </View>
-                <View style={{ flexDirection: "row-reverse" }}>
-                  <Text style={styles.text}>אימייל: </Text>
-                  <Text style={styles.details_text}>{item.email}</Text>
-                </View>
-                <View style={{ flexDirection: "row-reverse" }}>
-                  <Text style={styles.text}>סוג עזרה אחרונה שנבחרה: </Text>
-                  <Text style={styles.details_text}>{item.helpSearched}</Text>
-                </View>
-                <View style={{ flexDirection: "row-reverse" }}>
-                  <Text style={styles.text}>מספר הכניסות היום: </Text>
-                  <Text style={styles.details_text}>{item.counter}</Text>
-                </View>
+    return (
+      <ScrollView
+        style={{ justifyContesnt: "center" }}
+        contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
+      >
+        <Text style={styles.headline}>
+          מספר הכניסות היום: {number_of_users}
+        </Text>
+        {all_users.map((item, key) => {
+          return (
+            <View key={key} style={styles.volArea}>
+              <View style={{ flexDirection: "row-reverse" }}>
+                <Text style={styles.text}>שם: </Text>
+                <Text style={styles.details_text}>{item.name}</Text>
               </View>
-            );
-          })}
-        </ScrollView>
-      );
+              <View style={{ flexDirection: "row-reverse" }}>
+                <Text style={styles.text}>אימייל: </Text>
+                <Text style={styles.details_text}>{item.email}</Text>
+              </View>
+              <View style={{ flexDirection: "row-reverse" }}>
+                <Text style={styles.text}>סוג עזרה אחרונה שנבחרה: </Text>
+                <Text style={styles.details_text}>{item.helpSearched}</Text>
+              </View>
+              <View style={{ flexDirection: "row-reverse" }}>
+                <Text style={styles.text}>מספר הכניסות היום: </Text>
+                <Text style={styles.details_text}>{item.counter}</Text>
+              </View>
+            </View>
+          );
+        })}
+      </ScrollView>
+    );
   } // in case there is no volunteers
   else {
     return (
@@ -80,10 +76,11 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "right",
     writingDirection: "rtl",
-    fontSize: 20,
-    justifyContent: "flex-start",
     fontFamily: "Montserrat",
-    right: 0,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
+    marginBottom: 3,
   },
   details_text: {
     textAlign: "right",
@@ -107,15 +104,15 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 10,
     position: "absolute",
-    left:    0,
-    bottom:   0,
+    left: 0,
+    bottom: 0,
   },
   empty_page: {
     flex: 1,
     fontFamily: "Montserrat",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#aaa",
+    backgroundColor: "whitesmoke",
   },
   headline: {
     fontSize: 35,
@@ -125,16 +122,19 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     shadowOpacity: 0.2,
     letterSpacing: 1.5,
-    marginBottom: 30,
-    marginTop: 20,
+    marginBottom: 40,
+    marginTop: 30,
   },
   empty_text: {
-    textAlign: "right",
+    fontSize: 35,
+    textAlign: "center",
     fontFamily: "Montserrat",
-    writingDirection: "rtl",
-    fontSize: 40,
-    justifyContent: "flex-end",
-    right: 0,
+    color: "#800000",
+    fontWeight: "800",
+    shadowOpacity: 0.2,
+    letterSpacing: 1.5,
+    marginBottom: 30,
+    marginTop: -100,
   },
   title: {
     fontSize: 40,
@@ -147,6 +147,15 @@ const styles = StyleSheet.create({
     textShadowColor: "rosybrown",
     fontWeight: "600",
     margin: 10,
+  },
+  volArea: {
+    backgroundColor: "white",
+    borderColor: "gray",
+    borderWidth: 1.5,
+    width: "90%",
+    height: 130,
+    alignSelf: "center",
+    marginBottom: 2,
   },
 });
 

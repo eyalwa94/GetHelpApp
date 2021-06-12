@@ -22,6 +22,7 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 
+
 //Admin page and his functions
 const AdminScreen = ({ route, navigation }) => {
   const [firstName, setFirstName] = React.useState("");
@@ -102,6 +103,73 @@ const AdminScreen = ({ route, navigation }) => {
     return date + "-" + month + "-" + year; //format: dd-mm-yyyy;
   };
 
+  return (
+    <View style={{justifyContent: "center",
+    alignItems: "center",height: "30%", marginTop: 100,}}>
+      <Image style={styles.image} source={require("../assets/BatKol.jpg")} />
+
+      <Button
+        style={styles.Button}
+        mode="contained"
+        color="rgb(202, 197, 197)"
+        compact="true"
+        onPress={handleClickAddUser}
+      >
+        <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}>
+          {" "}
+          הוספת מתנדב {"\t"}
+        </Text>
+        <AntDesign name="adduser" size={20} color="black" />
+      </Button>
+      <View style={styles.space} />
+      <Button
+        style={styles.Button}
+        mode="contained"
+        color="rgb(202, 197, 197)"
+        compact="true"
+        onPress={handleClickShowAll}
+      >
+        <Text style={{ fontFamily: "Montserrat", fontSize: 19 }}>  
+          {" "}
+          רשימת המתנדבים עריכה/מחיקה {"\t"}
+        </Text>
+        <Feather name="list" size={20} color="black" />
+      </Button>
+      <View style={styles.space} />
+      <Button
+        style={styles.Button}
+        mode="contained"
+        color="rgb(202, 197, 197)"
+        compact="true"
+        onPress={handleClickShowStatistic}
+      >
+        <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}>
+          {" "}
+          סטטיסטיקות {"\t"}
+        </Text>
+        <Entypo name="bar-graph" size={20} color="black" />
+      </Button>
+      <View style={styles.space} />
+
+      <Button
+        style={styles.Button}
+        mode="contained"
+        color="rgb(202, 197, 197)"
+        compact="true"
+        onPress={() => {
+          auth().signOut();
+          navigation.navigate("Login");
+        }}
+      >
+        <Text style={{ fontFamily: "Montserrat", fontSize: 20 }}>
+          {" "}
+          התנתק {"\t"}
+        </Text>
+        <MaterialIcons name="logout" size={20} color="black" />
+      </Button>
+    </View>
+  );
+/*
   //navigation buttons
   return (
     <View
@@ -175,7 +243,7 @@ const AdminScreen = ({ route, navigation }) => {
         <MaterialIcons name="logout" size={20} color="black" />
       </Button>
     </View>
-  );
+  );*/
 };
 
 //Styling the page

@@ -16,6 +16,14 @@ import AddVolunteer from './app/screens/AddVolunteer';
 import UpdateVolunteer from './app/screens/UpdateVolunteer';
 import AllUsers from './app/screens/AllUsers';
 
+import { I18nManager } from "react-native";
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Setting a timer']);
+
+I18nManager.forceRTL(false);
+I18nManager.allowRTL(false);
+
 
 
 

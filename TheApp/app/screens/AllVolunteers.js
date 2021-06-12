@@ -205,9 +205,13 @@ const AllVolunteers = ({ route, navigation }) => {
             />
             <Text style={styles.text}>סוג עזרה:</Text>
             <RNPickerSelect
-              style={styles.textInput}
+              style={{
+                inputAndroid: { color: "black" },
+                viewContainer: { flex: 1, paddingLeft: "80%" },
+              }}
+              useNativeAndroidPickerStyle={false}
               placeholder={{
-                label: "Select a type...",
+                label: "אנא בחר...",
                 value: null,
               }}
               items={[
@@ -239,42 +243,45 @@ const AllVolunteers = ({ route, navigation }) => {
               <Text style={styles.text}> מיין </Text>
               <FontAwesome name="sort" size={20} color="black" />
             </Button>
+            <View style={styles.space}></View>
           </View>
-          {all_volunteers.map((item, key) => {
-            return (
-              <View key={key} style={styles.volArea}>
-                <Text style={styles.text}>שם: {item.firstName}</Text>
-                <Text style={styles.text}>שם משפחה: {item.lastName}</Text>
-                <Text style={styles.text}>עיר: {item.city}</Text>
-                <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
-                <Text style={styles.text}>סוג עזרה: {item.helpType}</Text>
-                <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
-                <Text>{"\n"}</Text>
-                <Button
-                  style={styles.volButtonPrimary}
-                  mode="contained"
-                  color="rgb(202, 197, 197)"
-                  onPress={() =>
-                    handleClickDelete(item.firstName, item.lastName, key)
-                  }
-                >
-                  <Text style={{ fontSize: 13 }}> מחיקה </Text>
-                  <AntDesign name="deleteuser" size={20} color="black" />
-                </Button>
-                <Button
-                  style={styles.volButtonPrimary}
-                  mode="contained"
-                  color="rgb(202, 197, 197)"
-                  onPress={() =>
-                    handleClickUpdate(item.firstName, item.lastName, key)
-                  }
-                >
-                  <Text style={{ fontSize: 13 }}> עריכה </Text>
-                  <AntDesign name="edit" size={20} color="black" />
-                </Button>
+          <View style={{ marginTop: 20 }}>
+            {all_volunteers.map((item, key) => {
+              return (
+                <View key={key} style={styles.volArea}>
+                  <Text style={styles.text}>שם: {item.firstName}</Text>
+                  <Text style={styles.text}>שם משפחה: {item.lastName}</Text>
+                  <Text style={styles.text}>עיר: {item.city}</Text>
+                  <Text style={styles.text}>מספר טלפון: {item.phone}</Text>
+                  <Text style={styles.text}>סוג עזרה: {item.helpType}</Text>
+                  <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
+                  <Text>{"\n"}</Text>
+                  <Button
+                    style={styles.volButtonPrimary}
+                    mode="contained"
+                    color="rgb(202, 197, 197)"
+                    onPress={() =>
+                      handleClickDelete(item.firstName, item.lastName, key)
+                    }
+                  >
+                    <Text style={{ fontSize: 13 }}> מחיקה </Text>
+                    <AntDesign name="deleteuser" size={20} color="black" />
+                  </Button>
+                  <Button
+                    style={styles.volButtonPrimary}
+                    mode="contained"
+                    color="rgb(202, 197, 197)"
+                    onPress={() =>
+                      handleClickUpdate(item.firstName, item.lastName, key)
+                    }
+                  >
+                    <Text style={{ fontSize: 13 }}> עריכה </Text>
+                    <AntDesign name="edit" size={20} color="black" />
+                  </Button>
                 </View>
-            );
-          })}
+              );
+            })}
+          </View>
         </ScrollView>
       );
     } // in case there are no volunteers
@@ -302,7 +309,7 @@ const AllVolunteers = ({ route, navigation }) => {
         </Button>
         {sorted_vol.map((item, key) => {
           return (
-            <View key={key} style={styles.volArea}>
+            <View key={key} style={styles.volSortArea}>
               <View style={{ flexDirection: "row-reverse" }}>
                 <Text style={styles.text}>שם: </Text>
                 <Text style={styles.details_text}>{item.firstName}</Text>
@@ -325,21 +332,20 @@ const AllVolunteers = ({ route, navigation }) => {
               </View>
 
               <View style={{ flexDirection: "row-reverse" }}>
-              <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
+                <Text style={styles.text}>מידע נוסף: {item.moreInfo}</Text>
               </View>
-              
-              
+
               <Button
-                  style={styles.volButton}
-                  mode="contained"
-                  color="rgb(202, 197, 197)"
-                  onPress={() =>
-                    handleClickDelete(item.firstName, item.lastName, key)
-                  }
-                >
-                  <Text style={{ fontSize: 13 }}> מחיקה </Text>
-                  <AntDesign name="deleteuser" size={20} color="black" />
-                </Button>
+                style={styles.volButton}
+                mode="contained"
+                color="rgb(202, 197, 197)"
+                onPress={() =>
+                  handleClickDelete(item.firstName, item.lastName, key)
+                }
+              >
+                <Text style={{ fontSize: 13 }}> מחיקה </Text>
+                <AntDesign name="deleteuser" size={20} color="black" />
+              </Button>
               <Button
                 style={styles.volButton}
                 mode="contained"
@@ -385,7 +391,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginEnd: 5,
     backgroundColor: "rgb(202, 197, 197)",
-    
   },
   volButton: {
     alignSelf: "flex-start",
@@ -491,7 +496,16 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1.5,
     width: "90%",
-    height: 350,
+    height: 310,
+    alignSelf: "center",
+    marginBottom: 2,
+  },
+  volSortArea: {
+    backgroundColor: "white",
+    borderColor: "gray",
+    borderWidth: 1.5,
+    width: "90%",
+    height: 280,
     alignSelf: "center",
     marginBottom: 2,
   },

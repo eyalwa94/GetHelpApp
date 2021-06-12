@@ -14,6 +14,8 @@ import { TextInput, Button } from "react-native-paper";
 import { firestore, auth } from "../api/firebase";
 import RNPickerSelect from "react-native-picker-select";
 
+
+
 const AddVolunteer = ({ route, navigation }) => {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -207,8 +209,10 @@ const AddVolunteer = ({ route, navigation }) => {
 
       <Text style={styles.text}>סוג עזרה:</Text>
       <RNPickerSelect
+      style={{ inputAndroid: { color: 'black' } ,viewContainer: { flex: 1, paddingLeft: "80%", }, }}
+      useNativeAndroidPickerStyle={false}
         placeholder={{
-          label: "Select a type...",
+          label: "אנא בחר ...",
           value: null,
         }}
         items={[
@@ -222,6 +226,8 @@ const AddVolunteer = ({ route, navigation }) => {
         }}
       ></RNPickerSelect>
 
+      <View style={styles.space}></View>
+      <View style={styles.space}></View>
       <Text style={styles.text}>קישור לקלנדלי:</Text>
       <TextInput
         placeholder=""
