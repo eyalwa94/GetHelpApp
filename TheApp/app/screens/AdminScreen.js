@@ -114,7 +114,7 @@ const AdminScreen = ({ route, navigation }) => {
 
     //Alert.alert(date + '-' + month + '-' + year);
     // You can turn it in to your desired format
-    return date + "-" + month + "-" + year; //format: dd-mm-yyyy;
+    return date + "/" + month + "/" + year; //format: dd-mm-yyyy;
   };
 
   return (

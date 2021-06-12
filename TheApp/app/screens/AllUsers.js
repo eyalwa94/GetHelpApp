@@ -27,7 +27,7 @@ const AllUsers = ({ route, navigation }) => {
         contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}
       >
         <Text style={styles.headline}>
-          מספר הכניסות היום: {number_of_users}
+          מספר האנשים שנכנסו היום: {number_of_users}
         </Text>
         {all_users.map((item, key) => {
           return (
@@ -57,7 +57,7 @@ const AllUsers = ({ route, navigation }) => {
   else {
     return (
       <View style={styles.empty_page}>
-        <Text style={styles.empty_text}> לא התבצעו כניסות היום</Text>
+        <Text style={styles.empty_text}> לא התבצעו היום כניסות</Text>
       </View>
     );
   }
