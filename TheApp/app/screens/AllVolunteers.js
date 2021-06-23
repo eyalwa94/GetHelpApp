@@ -287,8 +287,8 @@ const AllVolunteers = ({ route, navigation }) => {
     } // in case there are no volunteers
     else {
       return (
-        <View>
-          <Text>אין כרגע מתנדבים</Text>
+        <View style={styles.container}>
+          <Text style={styles.headline}>אין כרגע מתנדבים</Text>
         </View>
       );
     }
